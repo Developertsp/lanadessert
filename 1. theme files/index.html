@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+    <section class="nav-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="lana-logo">
+                        <img src="images/lana-logo.png" width="120px" alt="">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="d-flex nav-left-svg">
+                        <span class="nav-top-svg">
+                            <svg class="e-font-icon-svg e-fab-facebook" viewBox="0 0 512 512"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z">
+                                </path>
+                            </svg>
+                        </span>
+                        <span class="nav-top-svg">
+                            <svg class="e-font-icon-svg e-fab-instagram" viewBox="0 0 448 512"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z">
+                                </path>
+                            </svg>
+                        </span>
+                        <span class="nav-top-svg">
+                            <svg class="e-font-icon-svg e-fab-tiktok" viewBox="0 0 448 512"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z">
+                                </path>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="menu.html">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="faq.html">FAQ </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact Us</a>
+                    </li>
+
+
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="home-main">
+        <div class="container">
+            <div class="row py-5">
+                <div class="col-md-6">
+                    <div class="welcome my-5" data-aos="fade-right">
+                        <h4>Welcome To Lana Dessert</h4>
+                        <h2>
+                            Bite into Blissful Moments <br>Where Flavor Knows No Limits
+                        </h2>
+                        <p>We are a bakery that creatively combines desserts and fast food, emphasising unique flavours
+                            and inventive culinary presentations for enjoyment</p>
+                        <button class="btn px-5 py-3">view more</button>
+                    </div>
+                </div>
+                <div class="col-md-6 text-end">
+                    <div class="double-side my-4" data-aos="fade-down-left" data-aos-duration="1500">
+                        <img src="./images/home-lana.webp" width="250" class="left-small" alt="">
+                        <img src="./images/home-lana-left.webp" width="320" class="right-straw" alt="">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="have-look my-5 pt-5" data-aos="fade-down" data-aos-duration="1500">
+        <div class="container">
+            <div class="mount text-center mb-5">
+                <h4>Have a Look!</h4>
+                <h2>Our Mouthwatering Menu</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row" data-aos="fade-down" data-aos-duration="1500">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="./images/waffles-2.png" width="70px" alt="">
+                                    <h5 class="card-title">Waffles</h5>
+                                    <p class="card-text">Lana Dessert's waffles are irresistibly delicious, featuring
+                                        crispy edges, soft centres, and decadent toppings for a delightful treat
+                                        everyone will love.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="./images/shakes-1.png" width="70px" alt="">
+                                    <h5 class="card-title">
+                                        Shakes</h5>
+                                    <p class="card-text">Savour our shakes – creamy, rich, and bursting with flavour.
+                                        Indulge in classic favourites or explore unique combinations for a refreshing
+                                        treat anytime.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="./images/shakes-1.png" width="70px" alt="">
+                                    <h5 class="card-title">Croffles</h5>
+                                    <p class="card-text">A delicious fusion of croissants and waffles, crispy on the
+                                        outside, flaky on the inside, perfect for a delightful breakfast or snack.
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="./images/shakes-1.png" width="70px" alt="">
+                                    <h5 class="card-title">Mini Doughnuts</h5>
+                                    <p class="card-text">Bite-sized delights, fried to golden perfection, dusted with
+                                        sugar or glazed for sweetness, a delightful treat for any occasion.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" data-aos="fade-down" data-aos-duration="1500">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="./images/waffles-2.png" width="70px" alt="">
+                                    <h5 class="card-title">Waffles</h5>
+                                    <p class="card-text">Lana Dessert's waffles are irresistibly delicious, featuring
+                                        crispy edges, soft centres, and decadent toppings for a delightful treat
+                                        everyone will love.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="./images/shakes-1.png" width="70px" alt="">
+                                    <h5 class="card-title">
+                                        Shakes</h5>
+                                    <p class="card-text">Savour our shakes – creamy, rich, and bursting with flavour.
+                                        Indulge in classic favourites or explore unique combinations for a refreshing
+                                        treat anytime.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="./images/shakes-1.png" width="70px" alt="">
+                                    <h5 class="card-title">Croffles</h5>
+                                    <p class="card-text">A delicious fusion of croissants and waffles, crispy on the
+                                        outside, flaky on the inside, perfect for a delightful breakfast or snack.
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="./images/shakes-1.png" width="70px" alt="">
+                                    <h5 class="card-title">Mini Doughnuts</h5>
+                                    <p class="card-text">Bite-sized delights, fried to golden perfection, dusted with
+                                        sugar or glazed for sweetness, a delightful treat for any occasion.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" data-aos="fade-down" data-aos-duration="1500">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="./images/croffle-1.png" width="70px" alt="">
+                                    <h5 class="card-title">Burgers</h5>
+                                    <p class="card-text">Juicy patties sandwiched between soft buns, layered with fresh
+                                        lettuce, tomato, cheese, and sauce, a classic comfort food loved by many.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="./images/mini-doughnut.png" width="70px" alt="">
+                                    <h5 class="card-title">
+                                        Chicken</h5>
+                                    <p class="card-text">Crispy, succulent bites, tossed in tangy sauces or seasoned to
+                                        perfection, perfect for sharing or enjoying solo, a timeless favourite for any
+                                        gathering.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="./images/mini-doughnut.png" width="70px" alt="">
+                                    <h5 class="card-title">Cookie Dough</h5>
+                                    <p class="card-text">Creamy and irresistible, packed with chunks of chocolate or
+                                        nuts, perfect for scooping straight from the bowl or baking into warm, gooey
+                                        cookies.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="./images/mini-doughnut.png" width="70px" alt="">
+                                    <h5 class="card-title">Cheesecakes</h5>
+                                    <p class="card-text">Moist layers of decadence, frosted with creamy goodness,
+                                        adorned with colourful designs for celebrations or a delightful everyday
+                                        indulgence.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" data-aos="fade-down" data-aos-duration="1500">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="./images/waffles-2.png" width="70px" alt="">
+                                    <h5 class="card-title">Waffles</h5>
+                                    <p class="card-text">Lana Dessert's waffles are irresistibly delicious, featuring
+                                        crispy edges, soft centres, and decadent toppings for a delightful treat
+                                        everyone will love.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="./images/shakes-1.png" width="70px" alt="">
+                                    <h5 class="card-title">
+                                        Shakes</h5>
+                                    <p class="card-text">Savour our shakes – creamy, rich, and bursting with flavour.
+                                        Indulge in classic favourites or explore unique combinations for a refreshing
+                                        treat anytime.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="./images/shakes-1.png" width="70px" alt="">
+                                    <h5 class="card-title">Croffles</h5>
+                                    <p class="card-text">A delicious fusion of croissants and waffles, crispy on the
+                                        outside, flaky on the inside, perfect for a delightful breakfast or snack.
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="./images/shakes-1.png" width="70px" alt="">
+                                    <h5 class="card-title">Mini Doughnuts</h5>
+                                    <p class="card-text">Bite-sized delights, fried to golden perfection, dusted with
+                                        sugar or glazed for sweetness, a delightful treat for any occasion.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="founder-about" data-aos="fade-right" data-aos-duration="1000">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="founder-img">
+                        <img src="./images/home-lana-left.webp" class="custom-margin-img" width="100%" alt="">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="founder-img">
+                        <img src="./images/home-lana-msg.webp" width="100%" alt="">
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="founder-msg home-msg">
+                        <h2>About Us</h2>
+                        <h4>Our Story!</h4>
+                        <p>Welcome to Lana Dessert in Nottingham! We make delicious desserts and fast food with a twist.
+                            Whether you want to eat in or take out, we’re open every day from 5 PM to 2 AM. You can even
+                            customise your order to suit your taste because we love making things just how you like
+                            them. So, come on over and enjoy our yummy treats with a side of fun! </p>
+                        <a href="">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="counter-about" data-aos="fade-down" data-aos-duration="1500">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <p class="counter">12</p>
+                    <h2>Restaurant</h2>
+                </div>
+                <div class="col-md-3">
+                    <p class="counter">8</p>
+                    <h2>Years Experience</h2>
+                </div>
+                <div class="col-md-3">
+                    <p class="counter">50</p>
+                    <h2>Menu Dishes</h2>
+                </div>
+                <div class="col-md-3">
+                    <p class="counter">200</p>
+                    <h2>Customers</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="menu-items my-5 pt-5 bg-none" data-aos="fade-down" data-aos-duration="1500">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="dish-menu shadow">
+                        <h2>Appertizer</h2>
+                        <p><strong>Salad <span>....................................................</span> $50</strong>
+                        </p>
+                        <p class="dim-para">Sed ut perspiciatis unde omnis iste natus ero</p>
+                        <p><strong>Salad <span>....................................................</span> $50</strong>
+                        </p>
+                        <p class="dim-para">Sed ut perspiciatis unde omnis iste natus ero</p>
+                        <p><strong>Salad <span>....................................................</span> $50</strong>
+                        </p>
+                        <p class="dim-para">Sed ut perspiciatis unde omnis iste natus ero</p>
+                        <p><strong>Salad <span>....................................................</span> $50</strong>
+                        </p>
+                        <p class="dim-para">Sed ut perspiciatis unde omnis iste natus ero</p>
+                        <p><strong>Salad <span>....................................................</span> $50</strong>
+                        </p>
+                        <p class="dim-para">Sed ut perspiciatis unde omnis iste natus ero</p>
+                    </div>
+
+                </div>
+                <div class="col-md-8" data-aos="fade-left" data-aos-duration="1500">
+                    <div class=" d-grid">
+                        <img src="./images/home-burger.webp" class="dish-one" width="100%" alt="">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="any-time my-5 py-5 reserv">
+        <div class="container">
+            <div class="row py-5">
+                <div class="col-md-6" data-aos="fade-left" data-aos-duration="1500">
+                    <div class="contact-any mt-5">
+                        <h2>Reservation</h2>
+                        <h4>Book your sweet spot at Lana!</h4>
+                        <p>Fill out the form and book a table at Lana! Reserve today for a cosy stay and ensure a
+                            delightful experience. Don't miss out on this chance for relaxation!</p>
+
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-right" data-aos-duration="1500">
+                    <div class="contact-form text-center">
+                        <h2>Book Table</h2>
+                        <form class="mt-5">
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Name" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp">
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="password" class="form-control" placeholder="Phone"
+                                    id="exampleInputPassword1">
+                            </div>
+                            <div class="mb-3">
+                                <input type="select" class="form-control" placeholder="Subject"
+                                    id="exampleInputPassword1">
+                            </div>
+                            <div class="mb-3">
+                                <input type="select" class="form-control" placeholder="Subject"
+                                    id="exampleInputPassword1">
+                            </div>
+
+                            <button type="submit" class="btn mt-3">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- testimonial  -->
+    <div class="testimonial py-5" data-aos="fade-down" data-aos-duration="1500">
+        <div class="container text-center py-5">
+            <h2 class="client-test">Testimonials</h2>
+            <h2 class="customer">What Our Customers Say!</h2>
+
+            <div id="carouselExampleIndicators" class="carousel slide mt-5 py-5" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active text-center">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate ea qui provident, ipsa
+                            adipisci dignissimos?</p>
+                        <h2>John Doe</h2>
+                    </div>
+                    <div class="carousel-item text-center">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate ea qui provident, ipsa
+                            adipisci dignissimos?</p>
+                        <h2>John Doe</h2>
+                    </div>
+                    <div class="carousel-item text-center">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate ea qui provident, ipsa
+                            adipisci dignissimos?</p>
+                        <h2>John Doe</h2>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="news-letter py-5" data-aos="fade-up" data-aos-duration="1500">
+        <div class="container">
+            <div class="row mt-5 py-5">
+                <div class="col-md-4">
+                    <div class="news-title">
+                        <h5>Newsletter</h5>
+                        <h2>Subscribe Now !</h2>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <input type="text" placeholder="Your Email" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <button class="btn px-5 py-2 text-center mt-2">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-widget">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="about-lana">
+                        <img src="./images/lana-logo.png" width="150px" alt="">
+                        <h2>About Us</h2>
+                        <p>Welcome to Lana Dessert in Nottingham! We make delicious desserts and fast food with a twist.
+                            Whether you want to eat in or take out, we’re open every day from 5 PM to 2 AM.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="quick">
+                        <h2>Quick links</h2>
+                        <ul>
+                            <li><span>
+                                    <svg aria-hidden="true" class="e-font-icon-svg e-fas-arrow-right"
+                                        viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z">
+                                        </path>
+                                    </svg>
+                                </span> Home</li>
+                            <li>
+                                <span>
+                                    <svg aria-hidden="true" class="e-font-icon-svg e-fas-arrow-right"
+                                        viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z">
+                                        </path>
+                                    </svg>
+                                </span>
+                                About Us
+                            </li>
+                            <li><span>
+                                    <svg aria-hidden="true" class="e-font-icon-svg e-fas-arrow-right"
+                                        viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z">
+                                        </path>
+                                    </svg>
+                                </span>
+                                Menu</li>
+                            <li><span>
+                                    <svg aria-hidden="true" class="e-font-icon-svg e-fas-arrow-right"
+                                        viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z">
+                                        </path>
+                                    </svg>
+                                </span>
+                                FAQ</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-lana">
+                        <h2>Contact Us</h2>
+                        <ul>
+                            <li><span><svg aria-hidden="true" class="e-font-icon-svg e-fas-envelope-open-text"
+                                        viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M176 216h160c8.84 0 16-7.16 16-16v-16c0-8.84-7.16-16-16-16H176c-8.84 0-16 7.16-16 16v16c0 8.84 7.16 16 16 16zm-16 80c0 8.84 7.16 16 16 16h160c8.84 0 16-7.16 16-16v-16c0-8.84-7.16-16-16-16H176c-8.84 0-16 7.16-16 16v16zm96 121.13c-16.42 0-32.84-5.06-46.86-15.19L0 250.86V464c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V250.86L302.86 401.94c-14.02 10.12-30.44 15.19-46.86 15.19zm237.61-254.18c-8.85-6.94-17.24-13.47-29.61-22.81V96c0-26.51-21.49-48-48-48h-77.55c-3.04-2.2-5.87-4.26-9.04-6.56C312.6 29.17 279.2-.35 256 0c-23.2-.35-56.59 29.17-73.41 41.44-3.17 2.3-6 4.36-9.04 6.56H96c-26.51 0-48 21.49-48 48v44.14c-12.37 9.33-20.76 15.87-29.61 22.81A47.995 47.995 0 0 0 0 200.72v10.65l96 69.35V96h320v184.72l96-69.35v-10.65c0-14.74-6.78-28.67-18.39-37.77z">
+                                        </path>
+                                    </svg></span>
+                                admin@lanadessert.co.uk</li>
+                            <li><span><svg aria-hidden="true" class="e-font-icon-svg e-fas-phone-alt"
+                                        viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 60.6A370.66 370.66 0 0 1 130.6 204.11l60.6-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 122.6.61l-104 24A24 24 0 0 0 0 48c0 256.5 207.9 464 464 464a24 24 0 0 0 23.4-18.6l24-104a24.29 24.29 0 0 0-14.01-27.6z">
+                                        </path>
+                                    </svg></span>
+                                +628688245124</li>
+                            <li><span><svg aria-hidden="true" class="e-font-icon-svg e-fas-location-arrow"
+                                        viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M444.52 3.52L28.74 195.42c-47.97 22.39-31.98 92.75 19.19 92.75h175.91v175.91c0 51.17 70.36 67.17 92.75 19.19l191.9-415.78c15.99-38.39-25.59-79.97-63.97-63.97z">
+                                        </path>
+                                    </svg></span>
+                                xyz london uk</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-center">
+                    <div class="d-flex">
+                        <span class="nav-top-svg">
+                            <svg class="e-font-icon-svg e-fab-facebook" viewBox="0 0 512 512"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z">
+                                </path>
+                            </svg>
+                        </span>
+                        <span class="nav-top-svg">
+                            <svg class="e-font-icon-svg e-fab-instagram" viewBox="0 0 448 512"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z">
+                                </path>
+                            </svg>
+                        </span>
+                        <span class="nav-top-svg">
+                            <svg class="e-font-icon-svg e-fab-tiktok" viewBox="0 0 448 512"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z">
+                                </path>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script>
+        AOS.init();
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        let endValue = counter.textContent;
+                        let startValue = 0;
+                        let updating = setInterval(() => {
+                            startValue += endValue / 200;
+                            counter.textContent = startValue.toFixed(0);
+                            if (startValue > endValue) {
+                                counter.textContent = endValue;
+                                clearInterval(updating);
+                                observer.unobserve(counter);
+                            }
+                        }, 10);
+                    }
+                });
+            },
+            { threshold: 1 }
+        );
+        document
+            .querySelectorAll(".counter")
+            .forEach((counter) => observer.observe(counter));
+
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            const navTop = document.querySelector('.nav-top');
+            const navTopHeight = navTop.offsetHeight;
+
+            if (window.scrollY >= navTopHeight) {
+                navbar.classList.add('fixed-top-scroll');
+            } else {
+                navbar.classList.remove('fixed-top-scroll');
+            }
+        });
+
+    </script>
+</body>
+
+</html>

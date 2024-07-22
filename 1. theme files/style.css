@@ -1,0 +1,648 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+
+.nav-top{
+    background-color: transparent;
+   background-image: linear-gradient(140deg, #0D1518 90%, #f2295b 100%);
+}
+.main-content{
+  background:linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #00000080 65%), url('images/menu-main.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 66vh;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.reserv{
+    background:linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #131212d6 65%), url('images/reserv.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+   
+}
+.bg-none{
+    background: none !important;
+}
+.reserv .contact-any h2{
+    color: #e26284;
+    font-family: "Dancing Script", cursive;
+    font-size: 32px;
+    padding: 20px;
+}
+.reserv .contact-any h4{
+     color: #fff;
+     font-family: sans-serif;
+     font-weight: 600;
+}
+.reserv .contact-any p{
+     color: #fff;
+}
+
+.title h2{
+    color: #fff;
+}
+.promo .col-md-3 img{
+    border-radius: 0px 60px 0px 0px;
+}
+.promo .col-md-3 h2{
+    font-size: 20px;
+    text-align: left !important;
+    color: #e26284;
+    margin-top: 15px;
+}
+.menu-items{
+    margin-top: 80px;
+    background-color: #0D1518;
+    position: relative;
+    padding: 200px 0;
+    padding-top: 60px !important;
+}
+.dim-para{
+    opacity: 0.7;
+}
+.dish-menu{
+    background-color: #fff;
+    position: absolute;
+    left: 13rem;
+    z-index: 2;
+    padding: 55px;
+    top: 7rem;
+}
+.dish-more{
+    background-color: #fff;
+    position: absolute;
+    right: 6rem;
+    box-shadow: 0px 0px 5px 0px rgb(172, 171, 171);
+    z-index: 2;
+    padding: 55px;
+    top: 7rem;
+}
+.dish-more h2{
+    color: #e26284;
+    font-family: "Dancing Script", cursive;
+}
+.dish-more p{
+margin: 20px 0;
+}
+.dish-menu p{
+margin: 20px 0;
+}
+.dish-menu h2{
+    color: #e26284;
+    font-family: "Dancing Script", cursive;
+}
+.promo .hot{
+    color: #e26284;
+    font-family: "Dancing Script", cursive;
+    font-size: 24px;
+}
+.promo .special{
+    font-family: sans-serif;
+    font-weight: 600;
+}
+.promo .col-md-3{
+    margin: 20px 0;
+}
+.promo .col-md-3 h2{
+    font-family: sans-serif;
+}
+.contact-menu{
+    width: 28% !important;
+}
+.contact-menu span{
+    float: right;
+}
+
+.dish-img{
+    position: absolute;
+    left: 32rem;
+}
+.right-side-dish{
+    position: relative;
+    left: 0em;
+}
+.dish-one{
+   border-radius:  0px 80px 0px 0px;
+}
+.dish-two{
+    border-radius: 0px 0px 80px 0px;
+}
+.dish-three{
+    border-radius: 80px 0px 0px 0px;
+}
+.menu-more{
+    position: relative;
+}
+.order .col-md-3 h2{
+    font-size: 20px;
+}
+.order .col-md-3 button{
+ background-color: #DCD7E3;
+ text-align: center;
+ color: rgb(56, 55, 55);
+ border: none !important;
+ padding: 6px 14px;
+ font-weight: 600;
+}
+.order .col-md-3{
+    margin-top: 20px;
+}
+.footer-widget{
+    background:linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000d9 0%), url('images/menu-main.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  color: #fff;
+  padding-top: 100px;
+}
+.home-main{
+    background:linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #00000099 0%), url('images/home-main-lana.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    background-position: center;
+    padding-bottom: 70px;
+}
+.about-us-main{
+    background:linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #00000099 0%), url('images/lana-about.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 60vh;
+    background-position: center;
+}
+.left-small{
+    position: absolute;
+    top: 15rem;
+    left: 85px;
+    border-radius: 0px 60px 0px 0px;
+
+}
+.welcome h4{
+    color: #e26284;
+    font-family: "Dancing Script", cursive;
+    font-size: 32px;
+    padding: 15px 0;
+}
+.welcome h2{
+    font-family: sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 60px;
+}
+.welcome p{
+    
+    color: #fff;
+    line-height: 40px;
+    font-size: 20px;
+}
+.welcome button{
+    color: #fff;
+    font-size: 18px;
+    border: 1px solid #fff;
+    border-radius: 0px 16px 0px 0px;
+}
+.welcome button:hover{
+    color: #fff;
+    background: #e26284;
+    border: none;
+     
+}
+.right-straw{
+    border-radius: 60px 0px 0px 0px;
+}
+.double-side{
+    position: relative;
+}
+
+.about-us-main .about-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 172px;
+    color: #fff;
+}
+.single-chef img{
+    border-radius: 0px 80px 0px 0px;
+}
+.counter-about{
+    background:linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #00000099 0%), url('images/counter-about.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    padding: 83px 0px;
+    background-position: center;
+    background-attachment: fixed;
+}
+.founder-about{
+    background-color: #0D1518;
+    padding: 52px 0;
+    padding-bottom: 175px;
+    margin-top: 0px;
+    position: relative;
+    bottom: 0px;
+    /* height: 100vh; */
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+h2{
+    font-family: sans-serif;
+}
+.founder-img img{
+    border-radius: 0px 0px 0px 80px;
+}
+.founder-msg{
+    border-radius: 0px 0px 80px 0px;
+    background: #fff;
+    padding: 40px 20px;
+    position: relative;
+    left: -108px;
+    top: 18rem;
+}
+.founder-msg h2{
+    font-weight: 700;
+}
+.vision{
+    background:linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #00000099 0%), url('images/mission-about.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    padding: 30px 0px;
+    background-position: center;
+}
+.vision h2{
+    color: #e26284;
+    font-family: "Dancing Script", cursive;
+}
+.vision-content{
+    max-width: 350px;
+}
+.vision-content h2{
+font-family: sans-serif !important;
+font-weight: 600;
+}
+.vision-content p{
+ color: #fff;
+}
+.have-look .card{
+    border-radius: 0px 60px 0px 40px;
+}
+.custom-margin-img{
+    margin-top: 7rem;
+}
+.have-look .card{
+    text-align: center;
+    background-color: #1a2b32;
+    padding: 20px;
+    margin: 10px;
+}
+.have-look .card h5{
+    color: #e26284;
+    font-family: sans-serif;
+}
+.mount h4{
+    color: #e26284;
+    font-family: "Dancing Script", cursive;
+}
+.mount h2{
+    font-family: sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+}
+.mount button{
+    border-radius: 0px 20px 0px 5px;
+    padding: 15px 50px 15px 50px;
+    background: #e26284;
+    color: #fff;
+    border-color: #e26284;
+    margin-top: 20px;
+}
+.mount button:hover{
+    
+    color: #fff;
+}
+.have-look .card p{
+    color: #fff;
+    font-size: 13px;
+}
+.faq-main{
+    background:linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #00000099 0%), url('images/faq-banner.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 60vh;
+    background-position: center;
+} 
+.testimonial{
+    background: #0D1518;
+    color: #fff;
+}  
+.client-test{
+    color: #e26284;
+    font-family: "Dancing Script", cursive;
+}
+.customer{
+    font-family: sans-serif;
+    font-weight: 600;
+}
+.news-title h5{
+    color: #e26284;
+    font-family: "Dancing Script", cursive;
+    font-size: 32px;
+}
+.news-title h2{
+     font-family: sans-serif;
+     font-weight: 600;
+}
+.news-letter .col-md-5 input{
+    line-height: 40px;
+}
+.news-letter .col-md-3 button{
+    border-radius: 0px 20px 0px 5px;
+    background: #e26284;
+    color: #fff;
+    border: none;
+}
+.vertical-tab-menu .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #e26284;
+}
+.vertical-tab-menu .nav-link{
+    color: #000;
+    font-size: 14px;
+    text-align: left !important;
+    margin: 10px 0;
+}
+.vertical-tab-menu .nav-link:hover{
+    background-color: #e26284;
+    color: #ffff;
+}
+.vertical-tab-menu .tab-content>.active {
+    display: block;
+    background: #0D1518;
+    color: #ffff;
+    padding: 20px;
+}
+.faq-main .about-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 172px;
+    color: #fff;
+}
+.news-letter{
+    margin-top: 40px;
+    background-color: #0D1518;
+    color: #fff;
+}
+.contact-main{
+    background:linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #00000099 0%), url('images/contact-banner.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 60vh;
+    background-position: center;
+}   
+.contact-main .about-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 172px;
+    color: #fff;
+}
+.fixed-top-scroll {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1030;
+}
+ .bakery h4{
+    color: #e26284;
+    font-family: "Dancing Script", cursive;
+    font-weight: 400;
+}
+ .bakery h2{
+    font-family: sans-serif;
+    font-weight: 600;
+}
+p{
+    font-family: sans-serif;
+}
+.counter-about p{
+    color: #e26284;
+    font-size: 60px;
+    font-weight: 700;
+}
+.counter-about h2{
+    color: #fff;
+    font-weight: 500;
+    font-family: sans-serif;
+    font-size: 24px;
+}
+.faq-msg{
+    top: 7rem !important;
+}
+.faq-msg h5{
+    color: #e26284;
+    font-family: "Dancing Script", cursive;
+    font-weight: 400;
+    font-size: 32px;
+    padding: 20px 0;
+}
+.faq-msg h5{
+     font-family: sans-serif;
+     font-weight: 600;
+     padding: 14px 0;
+}
+.faq-msg a{
+    color: #e26284;
+}
+.cheif-about{
+    padding: 60px 0;
+}
+.cheif-crew h5{
+    color: #e26284;
+    font-family: "Dancing Script", cursive;
+    font-weight: 400;
+    font-size: 32px;
+    padding: 20px 0;
+}
+.cheif-crew h2{
+    color: #fff;
+    font-family: sans-serif;
+    font-weight: 600;
+}
+.cheif-crew p{
+    color: #fff;
+}
+.cheif-crew button{
+    margin-top: 20px;
+    border-radius: 0px 20px 0px 5px;
+    background: #e26284;
+    color: #fff;
+    border: none;
+}
+.contact-form{
+    border-radius: 0px 80px 0px 5px;
+    background: #e26284;
+    color: #fff;
+    border: none;
+    padding: 30px 60px;
+}
+.contact-form input{
+    line-height: 30px;
+}
+.contact-form button{
+    margin-top: 20px;
+    border-radius: 0px 20px 0px 5px;
+    background: #fff;
+    color: #e26284;
+    border: none;
+}
+.contact-any h2{
+    font-family: sans-serif;
+    font-weight: 700;
+}
+.contact-any p{
+   margin:30px 0;
+   line-height: 1.5rem;
+   max-width: 420px;
+}
+.contact-any li{
+    max-width: 320px;
+}
+.contact-any li strong{
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    max-width: 250px;
+}
+.home-msg{
+    top: 14rem !important;
+    padding: 62px !important;
+    left: -186px;
+    width: 45vw;
+}
+.home-msg h2{
+    color: #e26284;
+    font-family: "Dancing Script", cursive;
+    font-weight: 400;
+}
+.home-msg a{
+    color: #e26284;
+    font-family: sans-serif;
+}
+.home-msg h4{
+    font-family: sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+}
+.navbar li{
+    padding: 0px 20px;
+    margin: 0 20px;
+}
+.navbar li:hover{
+    background: #e26284;
+}
+.navbar li:hover a{
+    color: #fff !important;
+}
+.nav-top-svg svg{
+    width: 20px;
+    fill: #fff;
+}
+.nav-left-svg {
+    float: right;
+}
+.nav-top-svg {
+padding: 10px 13px;
+background-color: #e26284;
+border-radius: 0 20px 0 0;
+margin-top: 40px !important;
+margin: 0 15px;
+}
+.quick li{
+    list-style: none;
+    padding-top: 15px;
+}
+.quick svg{
+    fill: #e26284;
+    width: 15px;
+}
+.contact-lana li{
+    padding-top: 25px;
+    list-style: none;
+}
+.contact-lana svg{
+    fill: #e26284;
+    width: 20px;
+}
+@media only screen and (max-width:500px){
+    .dish-menu{
+        position: static;
+    }
+    .dish-more{
+        position: static;
+    }
+    .home-msg {
+        top: 3rem !important;
+        padding: 62px !important;
+        left: 0px;
+        width: 100%;
+    }
+    .founder-msg {
+        top: 3rem !important;
+        padding: 62px !important;
+        left: 0px;
+        width: 100%;
+    }
+}
+.cart-sec span{
+    float: right;
+}
+ .shipping-contact input{
+    line-height: 40px;
+ }
+ ::marker{
+    font-size: 22px;
+    font-weight: 500;
+ }
+ .shipping-contact ol li{
+    margin: 30px 0 ;
+ }
+ .otp p{
+    margin-top: 12px;
+ }
+ .add-note p{
+    margin-top: 12px;
+ }
+ .return button{
+    float: right;
+    border: 1px solid #c36;
+    color: #c36;
+    font-size: 16px;
+    width: 250px;
+    padding: 12px 0;
+ }
+ .return button:hover{
+     background-color: #c36;
+    color: #fff;   
+ }

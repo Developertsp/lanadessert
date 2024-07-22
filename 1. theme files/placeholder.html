@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilingual Placeholder</title>
+    <style>
+        .placeholder-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        .placeholder-container input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            max-width: 400px;
+        }
+        .placeholder-text {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #999;
+        }
+        .placeholder-text.english {
+            left: 10px;
+            text-align: left;
+            direction: ltr;
+        }
+        .placeholder-text.arabic {
+            right: 10px;
+            text-align: right;
+            direction: rtl;
+        }
+    </style>
+</head>
+<body>
+    <div class="placeholder-container">
+        <input type="text" id="nameInput" onfocus="hidePlaceholder('nameInput')" onblur="showPlaceholder('nameInput')">
+        <span class="placeholder-text english">Enter your name</span>
+        <span class="placeholder-text arabic">أدخل اسمك</span>
+    </div>
+    <div class="placeholder-container">
+        <input type="email" id="emailInput" onfocus="hidePlaceholder('emailInput')" onblur="showPlaceholder('emailInput')">
+        <span class="placeholder-text english">Enter your email</span>
+        <span class="placeholder-text arabic">أدخل بريدك الإلكتروني</span>
+    </div>
+    <div class="placeholder-container">
+        <input type="tel" id="phoneInput" onfocus="hidePlaceholder('phoneInput')" onblur="showPlaceholder('phoneInput')">
+        <span class="placeholder-text english">Enter your phone</span>
+        <span class="placeholder-text arabic">أدخل هاتفك</span>
+    </div>
+
+    <script>
+        function hidePlaceholder(id) {
+            const container = document.getElementById(id).parentElement;
+            container.querySelector('.english').style.display = 'none';
+            container.querySelector('.arabic').style.display = 'none';
+        }
+
+        function showPlaceholder(id) {
+            const input = document.getElementById(id);
+            if (input.value === '') {
+                const container = input.parentElement;
+                container.querySelector('.english').style.display = 'block';
+                container.querySelector('.arabic').style.display = 'block';
+            }
+        }
+        
+        // Initialize placeholders on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            showPlaceholder('nameInput');
+            showPlaceholder('emailInput');
+            showPlaceholder('phoneInput');
+        });
+    </script>
+</body>
+</html>
