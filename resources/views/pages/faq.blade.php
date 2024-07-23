@@ -1,5 +1,10 @@
 @extends('layout.app')
 @section('title')
+<style>
+    .nav-top-svg{
+        display: none;
+    }
+</style>
 
 @section('content')
 <div class="faq-main" data-aos="fade-down" data-aos-duration="1500">
