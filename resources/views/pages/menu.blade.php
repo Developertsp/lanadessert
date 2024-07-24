@@ -1,91 +1,33 @@
 @extends('layout.app')
-@section('title')
- 
+
+@section('title', 'Menu')
+
 @section('content')
 <div class="main-content" data-aos="fade-down" data-aos-duration="1500">
     <div class="title">
         <h2>Menu</h2>
     </div>
 </div>
+
 <div class="promo text-center my-5 py-5">
     <h5 class="hot">Hot Promo</h5>
     <h2 class="special">Special offer on Sunday</h2>
     <div class="container mt-5 pt-5">
-        <div class="row" data-aos="fade-up" data-aos-duration="1500">
-            <div class="col-md-3">
-                <a href="order.html"><img src="assets/theme/images/wafel.jpg" width="100%" alt=""></a>
-                <h2>Waffles</h2>
+        @php
+            $chunks = array_chunk($menus, 4); 
+        @endphp
+        @foreach ($chunks as $chunk)
+            <div class="row" data-aos="fade-up" data-aos-duration="1500">
+                @foreach ($chunk as $menu)
+                    <div class="col-md-3">
+                        <a href="order.html"><img src="{{ env('SERVER_URL') }}storage/{{ $menu['attributes']['background_image'] }}" width="100%" alt=""></a>
+                        <h2>{{ $menu['attributes']['name'] }}</h2>
+                    </div>
+                @endforeach
             </div>
-            <div class="col-md-3">
-                <img src="assets/theme/images/shake.jpg" width="100%" alt="">
-                <h2>Shakes</h2>
-            </div>
-            <div class="col-md-3">
-                <img src="assets/theme/images/role.jpg" width="100%" alt="">
-                <h2>Profiteroles</h2>
-            </div>
-            <div class="col-md-3">
-                <img src="assets/theme/images/pancake.webp" width="100%" alt="">
-                <h2>Pancake</h2>
-            </div>
-        </div>
-        <div class="row" data-aos="fade-up" data-aos-duration="1500">
-            <div class="col-md-3">
-                <img src="assets/theme/images/dognut.webp" width="100%" alt="">
-                <h2>Mini Doughnuts</h2>
-            </div>
-            <div class="col-md-3">
-                <img src="assets/theme/images/lana-meal.webp" width="100%" alt="">
-                <h2>Lana Meal Deal</h2>
-            </div>
-            <div class="col-md-3">
-                <img src="assets/theme/images/ice-cream.webp" width="100%" alt="">
-                <h2>Ice Creams</h2>
-            </div>
-            <div class="col-md-3">
-                <img src="assets/theme/images/drinks.webp" width="100%" alt="">
-                <h2>Drinks</h2>
-            </div>
-        </div>
-        <div class="row" data-aos="fade-up" data-aos-duration="1500">
-            <div class="col-md-3">
-                <img src="assets/theme/images/croffles.webp" width="100%" alt="">
-                <h2>Croffles</h2>
-            </div>
-            <div class="col-md-3">
-                <img src="assets/theme/images/cookie-douugh.webp" width="100%" alt="">
-                <h2>Cookie Dough</h2>
-            </div>
-            <div class="col-md-3">
-                <img src="assets/theme/images/cinnamon-rol.png" width="100%" alt="">
-                <h2>Cinnamon Rolls</h2>
-            </div>
-            <div class="col-md-3">
-                <img src="assets/theme/images/chicken.png" width="100%" alt="">
-                <h2>Chicken</h2>
-            </div>
-        </div>
-        <div class="row" data-aos="fade-up" data-aos-duration="1500">
-            <div class="col-md-3">
-                <img src="assets/theme/images/cheesecake.webp" width="100%" alt="">
-                <h2>Cheesecakes</h2>
-            </div>
-            <div class="col-md-3">
-                <img src="assets/theme/images/burgers.png" width="100%" alt="">
-                <h2>Burgers</h2>
-            </div>
-            <div class="col-md-3">
-                <img src="assets/theme/images/brownies.jpg" width="100%" alt="">
-                <h2>Brownies</h2>
-            </div>
-            <div class="col-md-3">
-                <img src="assets/theme/images/blondies.webp" width="100%" alt="">
-                <h2>Blondies</h2>
-            </div>
-        </div>
-    </div>
+        @endforeach
+    </div>    
 </div>
-
 <div class="menu-items my-5 pt-5" data-aos="fade-down-right" data-aos-duration="1500">
     <div class="container">
         <div class="row">

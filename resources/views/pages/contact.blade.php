@@ -1,6 +1,10 @@
 @extends('layout.app')
 @section('title')
- 
+<style>
+    .nav-top-svg{
+        display: none;
+    }
+</style>
 @section('content')
 <div class="contact-main" data-aos="fade-down" data-aos-duration="1500">
     <div class="container text-center d-flex justify-content-center align-items-center">

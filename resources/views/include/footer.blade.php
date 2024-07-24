@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="about-lana">
-                    <img src="./images/lana-logo.png" width="150px" alt="">
+                    <img src="/assets/theme/images/lana-logo.png" width="150px" alt="">
                     <h2>About Us</h2>
                     <p>Welcome to Lana Dessert in Nottingham! We make delicious desserts and fast food with a twist.
                         Whether you want to eat in or take out, we’re open every day from 5 PM to 2 AM.</p>
@@ -20,7 +20,8 @@
                                         d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z">
                                     </path>
                                 </svg>
-                            </span> Home</li>
+                            </span>
+                            <a href="{{ route('dashboad') }}"> Home</a></li>
                         <li>
                             <span>
                                 <svg aria-hidden="true" class="e-font-icon-svg e-fas-arrow-right"
@@ -30,7 +31,7 @@
                                     </path>
                                 </svg>
                             </span>
-                            About Us
+                            <a href="{{ route('about') }}">About Us</a>
                         </li>
                         <li><span>
                                 <svg aria-hidden="true" class="e-font-icon-svg e-fas-arrow-right"
@@ -40,7 +41,7 @@
                                     </path>
                                 </svg>
                             </span>
-                            Menu</li>
+                            <a href="{{ route('menu') }}"> Menu</li>
                         <li><span>
                                 <svg aria-hidden="true" class="e-font-icon-svg e-fas-arrow-right"
                                     viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
@@ -49,7 +50,7 @@
                                     </path>
                                 </svg>
                             </span>
-                            FAQ</li>
+                            <a href="{{ route('faq') }}">FAQ</a></li>
                     </ul>
                 </div>
             </div>
