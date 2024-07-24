@@ -13,15 +13,20 @@
     <h5 class="hot">Hot Promo</h5>
     <h2 class="special">Special offer on Sunday</h2>
     <div class="container mt-5 pt-5">
-        @foreach ($menus as $menu)
-        <div class="row" data-aos="fade-up" data-aos-duration="1500">
-            <div class="col-md-3">
-                <a href="order.html"><img src="{{ $menu['attributes']['background_image'] }}" width="100%" alt=""></a>
-                <h2>{{ $menu['attributes']['name'] }}</h2>
+        @php
+            $chunks = array_chunk($menus, 4); 
+        @endphp
+        @foreach ($chunks as $chunk)
+            <div class="row" data-aos="fade-up" data-aos-duration="1500">
+                @foreach ($chunk as $menu)
+                    <div class="col-md-3">
+                        <a href="order.html"><img src="{{ env('SERVER_URL') }}storage/{{ $menu['attributes']['background_image'] }}" width="100%" alt=""></a>
+                        <h2>{{ $menu['attributes']['name'] }}</h2>
+                    </div>
+                @endforeach
             </div>
-        </div>
         @endforeach
-    </div>
+    </div>    
 </div>
 <div class="menu-items my-5 pt-5" data-aos="fade-down-right" data-aos-duration="1500">
     <div class="container">

@@ -7,22 +7,31 @@ use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            // Make API request to fetch categories
-            $response = Http::get('http://127.0.0.1:8000/api/categories');
+            $serverUrl = env('SERVER_URL');
+           
+            $response = Http::get($serverUrl . 'api/categories', [
+                'headers' => [
+                    'Authorization' => $request->localstorage()->get('api_token'), 
+                ]
+            ]);
 
             if ($response->successful()) {
-                $menus = $response->json()['data']; // Assuming 'data' contains the array of menus
+                $responseData = $response->json();
+                $menus = $responseData['data']; 
+
+                // Store token in session
+                $request->localstorage()->put('api_token', $responseData['company_token']);
             } else {
-                $menus = []; // Default to empty array if request fails or no data returned
+                $menus = []; 
             }
 
             return view('pages.menu', ['menus' => $menus]);
         } catch (\Exception $e) {
-            // Handle any exceptions that occur during API request
-            return view('pages.menu', ['menus' => []]); // Return with empty array in case of error
+            return view('pages.menu', ['menus' => []]); 
         }
     }
 }
+
