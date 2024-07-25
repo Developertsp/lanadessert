@@ -17,11 +17,17 @@ class DashboardController extends Controller
             'Authorization' => $apiToken,
         ])->get($serverUrl . 'api/menu');
 
-        $data['menu'] = $response['data'];
+        if($response['status'] == 'success'){
+            $data['response'] = true;
+            $data['menu'] = $response['data'];
 
-        $collection = collect($response['data']);
-        $data['group'] = $collection->groupBy('category_id');
-        $data['menus'] = $collection->pluck('category.name',)->unique()->values()->all();
+            $collection = collect($response['data']);
+            $data['group'] = $collection->groupBy('category_id');
+            $data['menus'] = $collection->pluck('category.name',)->unique()->values()->all();
+        }
+        else{
+            $data['response'] = false;
+        }
         
         return view ('dashboard', $data);
     }

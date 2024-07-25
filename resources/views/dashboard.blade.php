@@ -34,19 +34,26 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row" data-aos="fade-down" data-aos-duration="1500">
-                    @foreach ($menus as $menu)
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <img src="./images/waffles-2.png" width="70px" alt="">
-                                    <h5 class="card-title">{{ $menu }}</h5>
-                                    <p class="card-text">Lana Dessert's waffles are irresistibly delicious, featuring
-                                        crispy edges, soft centres, and decadent toppings for a delightful treat
-                                        everyone will love.</p>
+                    @if ($response)
+                        @foreach ($menus as $menu)
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <img src="./images/waffles-2.png" width="70px" alt="">
+                                        <h5 class="card-title">{{ $menu }}</h5>
+                                        <p class="card-text">Lana Dessert's waffles are irresistibly delicious, featuring
+                                            crispy edges, soft centres, and decadent toppings for a delightful treat
+                                            everyone will love.</p>
+                                    </div>
                                 </div>
                             </div>
+                        @endforeach
+                    @else
+                        <div class="mount text-center mb-5">
+                            <h2 class="text-danger">-----Api Error-----</h2>
+                            <p>Configure APi Token</p>
                         </div>
-                    @endforeach
+                    @endif
                 </div>
             </div>
 
