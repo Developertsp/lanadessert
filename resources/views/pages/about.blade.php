@@ -128,7 +128,7 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <img src="/assets/theme/images/waffles-2.png" width="70px" alt="">
+                                {{-- <img src="/assets/theme/images/waffles-2.png" width="70px" alt=""> --}}
                                 <h5 class="card-title">Waffles</h5>
                                 <p class="card-text">Lana Dessert's waffles are irresistibly delicious, featuring
                                     crispy edges, soft centres, and decadent toppings for a delightful treat
@@ -152,7 +152,7 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <img src="./images/croffle-1.png" width="70px" alt="">
+                                <img src="/assets/theme/images/croffle-1.png" width="70px" alt="">
                                 <h5 class="card-title">Croffles</h5>
                                 <p class="card-text">A delicious fusion of croissants and waffles, crispy on the
                                     outside, flaky on the inside, perfect for a delightful breakfast or snack.</p>
@@ -162,7 +162,7 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <img src="./images/mini-doughnut.png" width="70px" alt="">
+                                <img src="/assets/theme/images/mini-doughnut.png" width="70px" alt="">
                                 <h5 class="card-title">Mini Doughnuts</h5>
                                 <p class="card-text">Bite-sized delights, fried to golden perfection, dusted with
                                     sugar or glazed for sweetness, a delightful treat for any occasion.</p>
