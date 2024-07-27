@@ -34,191 +34,26 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row" data-aos="fade-down" data-aos-duration="1500">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="./images/waffles-2.png" width="70px" alt="">
-                                <h5 class="card-title">Waffles</h5>
-                                <p class="card-text">Lana Dessert's waffles are irresistibly delicious, featuring
-                                    crispy edges, soft centres, and decadent toppings for a delightful treat
-                                    everyone will love.</p>
+                    @if ($response)
+                        @foreach ($menus as $menu)
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <img src="./images/waffles-2.png" width="70px" alt="">
+                                        <h5 class="card-title">{{ $menu }}</h5>
+                                        <p class="card-text">Lana Dessert's waffles are irresistibly delicious, featuring
+                                            crispy edges, soft centres, and decadent toppings for a delightful treat
+                                            everyone will love.</p>
+                                    </div>
+                                </div>
                             </div>
+                        @endforeach
+                    @else
+                        <div class="mount text-center mb-5">
+                            <h2 class="text-danger">-----Api Error-----</h2>
+                            <p>Configure APi Token</p>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="./images/shakes-1.png" width="70px" alt="">
-                                <h5 class="card-title">
-                                    Shakes</h5>
-                                <p class="card-text">Savour our shakes – creamy, rich, and bursting with flavour.
-                                    Indulge in classic favourites or explore unique combinations for a refreshing
-                                    treat anytime.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="./images/shakes-1.png" width="70px" alt="">
-                                <h5 class="card-title">Croffles</h5>
-                                <p class="card-text">A delicious fusion of croissants and waffles, crispy on the
-                                    outside, flaky on the inside, perfect for a delightful breakfast or snack.
-
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="./images/shakes-1.png" width="70px" alt="">
-                                <h5 class="card-title">Mini Doughnuts</h5>
-                                <p class="card-text">Bite-sized delights, fried to golden perfection, dusted with
-                                    sugar or glazed for sweetness, a delightful treat for any occasion.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" data-aos="fade-down" data-aos-duration="1500">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="./images/waffles-2.png" width="70px" alt="">
-                                <h5 class="card-title">Waffles</h5>
-                                <p class="card-text">Lana Dessert's waffles are irresistibly delicious, featuring
-                                    crispy edges, soft centres, and decadent toppings for a delightful treat
-                                    everyone will love.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="./images/shakes-1.png" width="70px" alt="">
-                                <h5 class="card-title">
-                                    Shakes</h5>
-                                <p class="card-text">Savour our shakes – creamy, rich, and bursting with flavour.
-                                    Indulge in classic favourites or explore unique combinations for a refreshing
-                                    treat anytime.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="./images/shakes-1.png" width="70px" alt="">
-                                <h5 class="card-title">Croffles</h5>
-                                <p class="card-text">A delicious fusion of croissants and waffles, crispy on the
-                                    outside, flaky on the inside, perfect for a delightful breakfast or snack.
-
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="./images/shakes-1.png" width="70px" alt="">
-                                <h5 class="card-title">Mini Doughnuts</h5>
-                                <p class="card-text">Bite-sized delights, fried to golden perfection, dusted with
-                                    sugar or glazed for sweetness, a delightful treat for any occasion.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" data-aos="fade-down" data-aos-duration="1500">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="./images/croffle-1.png" width="70px" alt="">
-                                <h5 class="card-title">Burgers</h5>
-                                <p class="card-text">Juicy patties sandwiched between soft buns, layered with fresh
-                                    lettuce, tomato, cheese, and sauce, a classic comfort food loved by many.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="./images/mini-doughnut.png" width="70px" alt="">
-                                <h5 class="card-title">
-                                    Chicken</h5>
-                                <p class="card-text">Crispy, succulent bites, tossed in tangy sauces or seasoned to
-                                    perfection, perfect for sharing or enjoying solo, a timeless favourite for any
-                                    gathering.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="./images/mini-doughnut.png" width="70px" alt="">
-                                <h5 class="card-title">Cookie Dough</h5>
-                                <p class="card-text">Creamy and irresistible, packed with chunks of chocolate or
-                                    nuts, perfect for scooping straight from the bowl or baking into warm, gooey
-                                    cookies.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="./images/mini-doughnut.png" width="70px" alt="">
-                                <h5 class="card-title">Cheesecakes</h5>
-                                <p class="card-text">Moist layers of decadence, frosted with creamy goodness,
-                                    adorned with colourful designs for celebrations or a delightful everyday
-                                    indulgence.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" data-aos="fade-down" data-aos-duration="1500">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="./images/waffles-2.png" width="70px" alt="">
-                                <h5 class="card-title">Waffles</h5>
-                                <p class="card-text">Lana Dessert's waffles are irresistibly delicious, featuring
-                                    crispy edges, soft centres, and decadent toppings for a delightful treat
-                                    everyone will love.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="./images/shakes-1.png" width="70px" alt="">
-                                <h5 class="card-title">
-                                    Shakes</h5>
-                                <p class="card-text">Savour our shakes – creamy, rich, and bursting with flavour.
-                                    Indulge in classic favourites or explore unique combinations for a refreshing
-                                    treat anytime.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="./images/shakes-1.png" width="70px" alt="">
-                                <h5 class="card-title">Croffles</h5>
-                                <p class="card-text">A delicious fusion of croissants and waffles, crispy on the
-                                    outside, flaky on the inside, perfect for a delightful breakfast or snack.
-
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="./images/shakes-1.png" width="70px" alt="">
-                                <h5 class="card-title">Mini Doughnuts</h5>
-                                <p class="card-text">Bite-sized delights, fried to golden perfection, dusted with
-                                    sugar or glazed for sweetness, a delightful treat for any occasion.</p>
-                            </div>
-                        </div>
-                    </div>
+                    @endif
                 </div>
             </div>
 
