@@ -12,17 +12,20 @@ public function index(Request $request)
 {
     try {
         $serverUrl = env('SERVER_URL');
-        
+        $apiToken = env('API_TOKEN');
+
+       
         $response = Http::withHeaders([
-            'Authorization' => $request->session()->get('api_token'),
+            'Authorization' => $apiToken,
         ])->get($serverUrl . 'api/categories');
-        
-        if ($response->successful()) {
+
+       
+        if ($response->successful()) {       
+            
             $responseData = $response->json();
             $menus = $responseData['data'];
-            $token = $responseData['company_token'];
-
-            $request->session()->put('api_token', $token);
+        
+           
         } else {
             $menus = [];
         }
