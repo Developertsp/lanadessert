@@ -16,16 +16,16 @@
         @php
             $chunks = array_chunk($menus, 4); 
         @endphp
-        @foreach ($chunks as $chunk)
-            <div class="row" data-aos="fade-up" data-aos-duration="1500">
-                @foreach ($chunk as $menu)
-                    <div class="col-md-3">
-                        <a href="order.html"><img src="{{ env('SERVER_URL') }}storage/{{ $menu['attributes']['background_image'] }}" width="100%" alt=""></a>
-                        <h2>{{ $menu['attributes']['name'] }}</h2>
-                    </div>
-                @endforeach
-            </div>
-        @endforeach
+       @foreach ($chunks as $chunk)
+       <div class="row" data-aos="fade-up" data-aos-duration="1500">
+           @foreach ($chunk as $menu)
+               <div class="col-md-3">
+                   <a href="order.html"><img src="{{ env('SERVER_URL') }}storage/{{ $menu['attributes']['background_image'] }}" width="100%" alt=""></a>
+                   <h2>{{ $menu['attributes']['name'] }}</h2>
+               </div>
+           @endforeach
+       </div>
+     @endforeach
     </div>    
 </div>
 <div class="menu-items my-5 pt-5" data-aos="fade-down-right" data-aos-duration="1500">
@@ -36,14 +36,7 @@
                  <h2>Appertizer</h2>
                  <p><strong>Salad <span>....................................................</span> $50</strong></p>
                  <p class="dim-para">Sed ut perspiciatis unde omnis iste natus ero</p>
-                 <p><strong>Salad <span>....................................................</span> $50</strong></p>
-                 <p class="dim-para">Sed ut perspiciatis unde omnis iste natus ero</p>
-                 <p><strong>Salad <span>....................................................</span> $50</strong></p>
-                 <p class="dim-para">Sed ut perspiciatis unde omnis iste natus ero</p>
-                 <p><strong>Salad <span>....................................................</span> $50</strong></p>
-                 <p class="dim-para">Sed ut perspiciatis unde omnis iste natus ero</p>
-                 <p><strong>Salad <span>....................................................</span> $50</strong></p>
-                 <p class="dim-para">Sed ut perspiciatis unde omnis iste natus ero</p>
+                 <!-- Add more dish menu items here -->
                 </div>
                
             </div>
@@ -69,7 +62,7 @@
             <div class="col-md-4">
                 <div class="dish-more-img d-grid">
                     <img src="assets/theme/images/more-dish1.webp" class="dish-one" width="350px" alt="">
-                    <img src=" assets/theme/images/menu-more3.webp" class="mt-4 dish-two" width="350px" alt="">
+                    <img src="assets/theme/images/menu-more3.webp" class="mt-4 dish-two" width="350px" alt="">
                 </div>
             </div>
             <div class="col-md-4">
@@ -83,14 +76,7 @@
                  <h2>Main Course</h2>
                  <p><strong>Sirloin Steak <span>....................................................</span> $50</strong></p>
                  <p class="dim-para">Sed ut perspiciatis unde omnis iste natus ero</p>
-                 <p><strong>Korean soup <span>....................................................</span> $50</strong></p>
-                 <p class="dim-para">Sed ut perspiciatis unde omnis iste natus ero</p>
-                 <p><strong>Salmon pasta <span>....................................................</span> $50</strong></p>
-                 <p class="dim-para">Sed ut perspiciatis unde omnis iste natus ero</p>
-                 <p><strong>chicken curry <span>....................................................</span> $50</strong></p>
-                 <p class="dim-para">Sed ut perspiciatis unde omnis iste natus ero</p>
-                 <p><strong>Dimsum <span>....................................................</span> $50</strong></p>
-                 <p class="dim-para">Sed ut perspiciatis unde omnis iste natus ero</p>
+                 <!-- Add more main course items here -->
                 </div>
                
             </div>
@@ -106,14 +92,7 @@
                  <h2>Dessert</h2>
                  <p><strong>Pancake<span>....................................................</span> $50</strong></p>
                  <p class="dim-para">Sed ut perspiciatis unde omnis iste natus ero</p>
-                 <p><strong>Ice Cream <span>....................................................</span> $50</strong></p>
-                 <p class="dim-para">Sed ut perspiciatis unde omnis iste natus ero</p>
-                 <p><strong>Sambosa <span>....................................................</span> $50</strong></p>
-                 <p class="dim-para">Sed ut perspiciatis unde omnis iste natus ero</p>
-                 <p><strong>American pie <span>....................................................</span> $50</strong></p>
-                 <p class="dim-para">Sed ut perspiciatis unde omnis iste natus ero</p>
-                 <p><strong>Banoffie <span>....................................................</span> $50</strong></p>
-                 <p class="dim-para">Sed ut perspiciatis unde omnis iste natus ero</p>
+                 <!-- Add more dessert items here -->
                 </div>
                
             </div>
@@ -132,4 +111,5 @@
         </div>
     </div>
 </div>
+
 @endsection
