@@ -30,6 +30,7 @@
         <div class="mount text-center mb-5">
             <h4>Have a Look!</h4>
             <h2>Our Mouthwatering Menu</h2>
+            <a href="{{ route('categories.all') }}" class="btn btn-primary">View All</a>
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -41,9 +42,12 @@
                                     <div class="card-body">
                                         <img src="./images/waffles-2.png" width="70px" alt="">
                                         <h5 class="card-title">{{ $menu }}</h5>
-                                        <p class="card-text">Lana Dessert's waffles are irresistibly delicious, featuring
+                                        <p class="card-text">
+                                            Lana Dessert's waffles are irresistibly delicious, featuring
                                             crispy edges, soft centres, and decadent toppings for a delightful treat
-                                            everyone will love.</p>
+                                            everyone will love.
+                                        </p>
+                                        {{-- <a href="{{route('menu', ['category' => $menu['slug']])}}" class="btn btn-primary">View</a> --}}
                                     </div>
                                 </div>
                             </div>
