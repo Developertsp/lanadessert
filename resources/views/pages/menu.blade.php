@@ -20,7 +20,7 @@
        <div class="row" data-aos="fade-up" data-aos-duration="1500">
            @foreach ($chunk as $menu)
                <div class="col-md-3">
-                   <a href="order.html"><img src="{{ env('SERVER_URL') }}storage/{{ $menu['attributes']['background_image'] }}" width="100%" alt=""></a>
+                   <a href="#"><img src="{{ env('SERVER_URL') }}storage/{{ $menu['attributes']['background_image'] }}" width="100%" alt=""></a>
                    <h2>{{ $menu['attributes']['name'] }}</h2>
                </div>
            @endforeach
