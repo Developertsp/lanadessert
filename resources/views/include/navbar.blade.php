@@ -52,7 +52,7 @@
                     <a class="nav-link" aria-current="page" href="/about">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/menu">Online Order</a>
+                    <a class="nav-link" href="/menus">Online Order</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/faq">FAQ </a>

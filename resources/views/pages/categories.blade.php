@@ -17,7 +17,7 @@
                 @if ($response)
                     @foreach ($categories as $category)
                         <div class="col-md-3">
-                            <a href="{{route('menu', ['category' => $category['slug']])}}"><img src="{{ asset('assets/theme/images/wafel.jpg')}}" width="100%" alt=""></a>
+                            <a href="{{route('menu', ['category' => $category['slug']])}}"><img src="{{ env('SERVER_URL') }}storage/{{ $category['background_image'] }}" width="100%" alt=""></a>
                             <h2>{{ $category['name'] }}</h2>
                         </div>
                     @endforeach
