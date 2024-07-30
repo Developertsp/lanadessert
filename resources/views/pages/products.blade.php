@@ -35,7 +35,7 @@
                 @if ($response)
                     @foreach ($products as $product)
                         <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
-                            <img src="{{ asset('assets/theme/images/wafel.jpg')}}" class="card-img-top" alt="...">
+                            <img src="#" class="card-img-top" alt="...">
                             <div class="card-body">
                               <h5 class="card-title">{{ $product['title'] }}</h5>
                                 <div class="d-flex justify-content-between align-items-center">
@@ -46,9 +46,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
-
-                    
+                    @endforeach    
                 @else
                     <div class="mount text-center mb-5">
                         <h2 class="text-danger">-----Api Error-----</h2>
