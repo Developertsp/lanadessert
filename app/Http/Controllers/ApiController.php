@@ -46,6 +46,7 @@ class ApiController extends Controller
         }
         else{
             $data['response'] = false;
+            // $data['category'] = $request->category;
         }
         
         return view('pages.products', $data);

@@ -14,7 +14,7 @@ use App\Http\Controllers\FAQController;
 Route::get('/', [DashboardController::class, 'index'])->name('dashboad');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-Route::get('/menu', [MenuController::class, 'index'])->name('menu');
+Route::get('/menus', [MenuController::class, 'index'])->name('menus');
 Route::get('/faq', [FAQController::class, 'index'])->name('faq');
 
 Route::get('categories', [ApiController::class, 'categories'])->name('categories.all');
