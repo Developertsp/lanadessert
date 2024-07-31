@@ -19,11 +19,11 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" id="productId" />
+                <input type="hidden" id="productDetail" data-product-detail="" />
                 <div class="options"></div>
             </div>
             <div class="modal-footer">
-            {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
-            <button type="button" class="btn btn-success" id="addToCartButton">Add to cart</button>
+                <button type="button" class="btn btn-success" id="addToCartButton" data-product-detail="">Add to cart</button>
             </div>
         </div>
         </div>
@@ -68,11 +68,11 @@
             var button = $(e.relatedTarget);
             var productTitle = button.data('product-title');
             var productDetail = button.data('product-detail');
-            console.log(productDetail);
 
             var modal = $(this);
             modal.find('.modal-title').text(productTitle);
             modal.find('#productId').val(productDetail.id);
+            modal.find('#productDetail').data('product-detail', productDetail);
 
             var optionsHtml = '';
             if (productDetail.options && productDetail.options.length > 0) {
@@ -83,7 +83,7 @@
                         optionGroup.option.option_values.forEach(function(optionValue) {
                             optionsHtml += '<div class="form-check d-flex justify-content-between align-items-center">';
                             optionsHtml += '<div>';
-                            optionsHtml += '<input class="form-check-input" type="radio" name="option_' + optionGroup.option.id + '" id="option_' + optionValue.id + '" value="' + optionValue.id + '">';
+                            optionsHtml += '<input class="form-check-input" type="radio" name="option_' + optionGroup.option.id + '" id="option_' + optionValue.id + '" value="' + optionValue.id + '" data-option-name="' + optionValue.name +'">';
                             optionsHtml += '<label class="form-check-label" for="option_' + optionValue.id + '">' + optionValue.name + '</label>';
                             optionsHtml += '</div>';
                             if (optionValue.price) {
@@ -97,27 +97,32 @@
             } else {
                 optionsHtml = '<p>No options available for this product.</p>';
             }
-
             modal.find('.options').html(optionsHtml);
         });
 
         $('#addToCartButton').on('click', function() {
             var productId = $('#productId').val();
+            var productDetail = $('#productDetail').data('product-detail');
             var selectedOptions = {};
-            
+            var selectedOptionNames = [];
+
             $('.option-group').each(function() {
                 var optionGroupId = $(this).find('input[type=radio]').attr('name').split('_')[1];
                 var selectedOption = $(this).find('input[type=radio]:checked').val();
+                var selectedOptionName = $(this).find('input[type=radio]:checked').data('option-name');
                 if (selectedOption) {
                     selectedOptions[optionGroupId] = selectedOption;
+                    selectedOptionNames.push(selectedOptionName);
                 }
             });
-console.log(selectedOptions);
+
             var cartData = {
                 product_id: productId,
-                options: selectedOptions
+                options: selectedOptions,
+                optionNames: selectedOptionNames,
+                product_detail: productDetail
             };
-console.log(cartData);
+
             $.ajax({
                 url: '{{ route("cart.add")}}',
                 type: 'POST',
