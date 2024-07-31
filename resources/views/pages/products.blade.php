@@ -18,11 +18,12 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            hers display sides
+                <input type="hidden" id="productId" />
+                <div class="options"></div>
             </div>
             <div class="modal-footer">
             {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
-            <button type="button" class="btn btn-success">Add to cart</button>
+            <button type="button" class="btn btn-success" id="addToCartButton">Add to cart</button>
             </div>
         </div>
         </div>
@@ -40,7 +41,7 @@
                               <h5 class="card-title">{{ $product['title'] }}</h5>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="price">${{$product['price']}}</span>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cartModal" data-product-title="{{ $product['title'] }}">
+                                    <button type="button" id="openModal" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cartModal" data-product-detail="{{ json_encode($product) }}" data-product-title="{{ $product['title'] }}">
                                         Add
                                     </button>
                                 </div>
@@ -58,20 +59,83 @@
     </div>
 @endsection
 
-{{-- @section('script')
+@section('script')
 
 <script>
     $(document).ready(function() {
-        $(document).on('click', '#openModal', function(){
-            console.log(12);
-        });
-        $('#cartModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); // Button that triggered the modal
-            var productTitle = button.data('product-title'); // Extract info from data-* attributes
-            console.log(productTitle)
+
+        $('#cartModal').on('show.bs.modal', function (e) {
+            var button = $(e.relatedTarget);
+            var productTitle = button.data('product-title');
+            var productDetail = button.data('product-detail');
+            console.log(productDetail);
+
             var modal = $(this);
-            modal.find('.modal-title').text('Add ' + productTitle + ' to cart');
+            modal.find('.modal-title').text(productTitle);
+            modal.find('#productId').val(productDetail.id);
+
+            var optionsHtml = '';
+            if (productDetail.options && productDetail.options.length > 0) {
+                productDetail.options.forEach(function(optionGroup) {
+                    optionsHtml += '<div class="option-group">';
+                    optionsHtml += '<h6>' + optionGroup.option.name + '</h6>';
+                    if (optionGroup.option.option_values && optionGroup.option.option_values.length > 0) {
+                        optionGroup.option.option_values.forEach(function(optionValue) {
+                            optionsHtml += '<div class="form-check d-flex justify-content-between align-items-center">';
+                            optionsHtml += '<div>';
+                            optionsHtml += '<input class="form-check-input" type="radio" name="option_' + optionGroup.option.id + '" id="option_' + optionValue.id + '" value="' + optionValue.id + '">';
+                            optionsHtml += '<label class="form-check-label" for="option_' + optionValue.id + '">' + optionValue.name + '</label>';
+                            optionsHtml += '</div>';
+                            if (optionValue.price) {
+                                optionsHtml += '<span>$' + optionValue.price + '</span>';
+                            }
+                            optionsHtml += '</div>';
+                        });
+                    }
+                    optionsHtml += '</div>';
+                });
+            } else {
+                optionsHtml = '<p>No options available for this product.</p>';
+            }
+
+            modal.find('.options').html(optionsHtml);
+        });
+
+        $('#addToCartButton').on('click', function() {
+            var productId = $('#productId').val();
+            var selectedOptions = {};
+            
+            $('.option-group').each(function() {
+                var optionGroupId = $(this).find('input[type=radio]').attr('name').split('_')[1];
+                var selectedOption = $(this).find('input[type=radio]:checked').val();
+                if (selectedOption) {
+                    selectedOptions[optionGroupId] = selectedOption;
+                }
+            });
+console.log(selectedOptions);
+            var cartData = {
+                product_id: productId,
+                options: selectedOptions
+            };
+console.log(cartData);
+            $.ajax({
+                url: '{{ route("cart.add")}}',
+                type: 'POST',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "data": cartData
+                },
+                success: function(response) {
+                    console.log(response);
+                    alert('Product added to cart successfully!');
+                    $('#cartModal').modal('hide');
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                    alert('There was an error adding the product to the cart.');
+                }
+            });
         });
     });
 </script>
-@endsection --}}
+@endsection
