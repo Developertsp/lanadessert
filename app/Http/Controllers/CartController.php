@@ -9,18 +9,21 @@ class CartController extends Controller
 {
     public function view(Request $request)
     {
-        return session('cart');
+        $data['cartItems'] = Session::get('cart');
+        // return $data;
+        return view('pages.cart', $data);
     }
 
     public function add(Request $request)
     {
         // return $request->data['options'];
-        $productId = $request->data['product_id'];
-        $options = $request->data['options'];
+        $productDetail  = $request->data['product_detail'];
+        $productId      = $request->data['product_id'];
+        $options        = $request->data['options'];
+        $optionNames    = $request->data['optionNames'];
 
-        // Assuming you have a Cart model to manage the cart
-        $cart = session()->get('cart', []);
-
+        $cart = Session::get('cart', []);
+// return $request;
         // Check if product already exists in the cart
         $productExists = false;
         foreach ($cart as &$item) {
@@ -33,14 +36,23 @@ class CartController extends Controller
 
         if (!$productExists) {
             $cart[] = [
-                'product_id' => $productId,
-                'options' => $options,
-                'quantity' => 1
+                'product_id'    => $productId,
+                'product_title' => $productDetail['title'],
+                'product_price' => $productDetail['price'],
+                'options'       => $options,
+                'optionNames'   => $optionNames,
+                'quantity'      => 1
             ];
         }
+        // return $cart;
 
-        session()->put('cart', $cart);
+        Session::put('cart', $cart);
 
         return response()->json(['success' => true, 'message' => 'Product added to cart']);
+    }
+
+    public function destroy()
+    {
+        Session::flush();
     }
 }
