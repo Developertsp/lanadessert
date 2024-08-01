@@ -23,4 +23,5 @@ Route::get('menu', [ApiController::class, 'products'])->name('menu');
 
 Route::post('cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('cart', [CartController::class, 'view'])->name('cart.view');
+Route::get('destroy', [CartController::class, 'destroy']);
 
