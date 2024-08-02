@@ -16,18 +16,18 @@ class CartController extends Controller
 
     public function add(Request $request)
     {
-        // return $request->data['options'];
         $productDetail  = $request->data['product_detail'];
         $productId      = $request->data['product_id'];
         $options        = $request->data['options'];
         $optionNames    = $request->data['optionNames'];
 
         $cart = Session::get('cart', []);
-// return $request;
+
+        // return count($cart);
         // Check if product already exists in the cart
         $productExists = false;
         foreach ($cart as &$item) {
-            if ($item['product_id'] == $productId && $item['options'] == $options) {
+            if ($item['productId'] == $productId && $item['options'] == $options) {
                 $item['quantity']++;
                 $productExists = true;
                 break;
@@ -36,20 +36,40 @@ class CartController extends Controller
 
         if (!$productExists) {
             $cart[] = [
-                'product_id'    => $productId,
-                'product_title' => $productDetail['title'],
-                'product_price' => $productDetail['price'],
+                'rowId'         => count($cart) + 1,
+                'productId'     => $productId,
+                'productTitle'  => $productDetail['title'],
+                'productPrice'  => $productDetail['price'],
                 'options'       => $options,
                 'optionNames'   => $optionNames,
-                'quantity'      => 1
+                'quantity'      => 1,
+                'rowTotal'      => $productDetail['price']
             ];
         }
-        // return $cart;
-
         Session::put('cart', $cart);
-
         return response()->json(['success' => true, 'message' => 'Product added to cart']);
     }
+
+    public function update(Request $request)
+    {
+        $rowId = $request->row_id;
+        // $options = $request->options;
+        $quantity = $request->quantity;
+// return $request;
+        $cart = Session::get('cart', []);
+
+        foreach ($cart as &$item) {
+            if ($item['rowId'] == $rowId) {
+                $item['quantity'] = $quantity;
+                $item['rowTotal'] = $quantity * $item['productPrice'];
+                break;
+            }
+        }
+// return $cart;
+        Session::put('cart', $cart);
+        return response()->json(['success' => true, 'message' => 'Cart updated successfully']);
+    }
+
 
     public function destroy()
     {
