@@ -24,6 +24,7 @@ Route::get('product/{id}', [ApiController::class, 'product'])->name('product');
 
 Route::post('cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('cart', [CartController::class, 'view'])->name('cart.view');
-Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+Route::post('cart/update', [CartController::class, 'update'])->name('cart.update');
+Route::delete('cart/delete', [CartController::class, 'delete'])->name('cart.delete');
 Route::get('destroy', [CartController::class, 'destroy']);
 

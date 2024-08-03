@@ -32,9 +32,9 @@ class CartController extends Controller
         $response_product = $this->apiController->product($productId);
         $productDetail =  collect($response_product['products'])->first();
 
-        $response_options = collect($this->apiController->options_detail(array_values($options))['options']);
-
-        // return $response_options;
+        // fetch product sides/options detail for total price
+        $responseOptions = collect($this->apiController->options_detail(array_values($options))['options']);
+        $optionsPrice = $responseOptions->sum('price');
 
         $cart = Session::get('cart', []);
 
@@ -43,22 +43,24 @@ class CartController extends Controller
         foreach ($cart as &$item) {
             if ($item['productId'] == $productId && $item['options'] == $options) {
                 $item['quantity']++;
-                $item['rowTotal'] = $productDetail['price'] * $item['quantity'];
+                $item['rowTotal'] = $item['comboTotal'] * $item['quantity'];
                 $productExists = true;
                 break;
             }
         }
 
+        $rowId = $productId.time();
         if (!$productExists) {
-            $cart[] = [
-                'rowId'         => count($cart) + 1,
+            $cart[$rowId] = [
+                'rowId'         => $rowId,
                 'productId'     => $productId,
                 'productTitle'  => $productDetail['title'],
                 'productPrice'  => $productDetail['price'],
                 'options'       => $options,
                 'optionNames'   => $optionNames,
                 'quantity'      => 1,
-                'rowTotal'      => $productDetail['price']
+                'rowTotal'      => $productDetail['price'] + $optionsPrice,
+                'comboTotal'    => $productDetail['price'] + $optionsPrice
             ];
         }
 
@@ -85,7 +87,7 @@ class CartController extends Controller
         foreach ($cart as &$item) {
             if ($item['rowId'] == $rowId) {
                 $item['quantity'] = $quantity;
-                $item['rowTotal'] = $quantity * $item['productPrice'];
+                $item['rowTotal'] = $quantity * $item['comboTotal'];
                 $rowTotal = $item['rowTotal'];
                 break;
             }
@@ -103,6 +105,28 @@ class CartController extends Controller
         return response()->json(['success' => true, 'message' => 'Cart updated successfully', 'rowTotal' => $rowTotal, 'cartSubTotal' => $subTotal]);
     }
 
+    public function delete(Request $request)
+    {
+        $cart = Session::get('cart', []);
+        $rowId = $request->row_id;
+
+        if (isset($cart[$rowId])) {
+            unset($cart[$rowId]);
+
+            // Calculate the subtotal
+            $subTotal = 0;
+            foreach ($cart as $product) {
+                $subTotal += $product['rowTotal'];
+            }
+
+            Session::put('cart', $cart);
+            Session::put('cartSubTotal', $subTotal);
+
+            return response()->json(['message' => 'Success', ], 200);
+        }
+
+        return response()->json(['message' => 'error'], 404);
+    }
 
     public function destroy()
     {
