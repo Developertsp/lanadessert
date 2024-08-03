@@ -7,28 +7,43 @@ use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
+    protected $apiController;
+
+    public function __construct(ApiController $apiController)
+    {
+        $this->apiController = $apiController;
+    }
+
     public function view(Request $request)
     {
         $data['cartItems'] = Session::get('cart');
+        $data['cartSubTotal'] = Session::get('cartSubTotal');
         // return $data;
         return view('pages.cart', $data);
     }
 
     public function add(Request $request)
     {
-        $productDetail  = $request->data['product_detail'];
         $productId      = $request->data['product_id'];
         $options        = $request->data['options'];
         $optionNames    = $request->data['optionNames'];
 
+        // fetch product detail using api
+        $response_product = $this->apiController->product($productId);
+        $productDetail =  collect($response_product['products'])->first();
+
+        $response_options = collect($this->apiController->options_detail(array_values($options))['options']);
+
+        // return $response_options;
+
         $cart = Session::get('cart', []);
 
-        // return count($cart);
         // Check if product already exists in the cart
         $productExists = false;
         foreach ($cart as &$item) {
             if ($item['productId'] == $productId && $item['options'] == $options) {
                 $item['quantity']++;
+                $item['rowTotal'] = $productDetail['price'] * $item['quantity'];
                 $productExists = true;
                 break;
             }
@@ -46,28 +61,46 @@ class CartController extends Controller
                 'rowTotal'      => $productDetail['price']
             ];
         }
+
+        // Calculate the subtotal
+        $subTotal = 0;
+        foreach ($cart as $product) {
+            $subTotal += $product['rowTotal'];
+        }
+
         Session::put('cart', $cart);
+        Session::put('cartSubTotal', $subTotal);
+
         return response()->json(['success' => true, 'message' => 'Product added to cart']);
     }
 
     public function update(Request $request)
     {
         $rowId = $request->row_id;
-        // $options = $request->options;
         $quantity = $request->quantity;
-// return $request;
+
         $cart = Session::get('cart', []);
 
+        $rowTotal = 0;
         foreach ($cart as &$item) {
             if ($item['rowId'] == $rowId) {
                 $item['quantity'] = $quantity;
                 $item['rowTotal'] = $quantity * $item['productPrice'];
+                $rowTotal = $item['rowTotal'];
                 break;
             }
         }
-// return $cart;
+
+        // Calculate the subtotal
+        $subTotal = 0;
+        foreach ($cart as $product) {
+            $subTotal += $product['rowTotal'];
+        }
+
         Session::put('cart', $cart);
-        return response()->json(['success' => true, 'message' => 'Cart updated successfully']);
+        Session::put('cartSubTotal', $subTotal);
+        
+        return response()->json(['success' => true, 'message' => 'Cart updated successfully', 'rowTotal' => $rowTotal, 'cartSubTotal' => $subTotal]);
     }
 
 
