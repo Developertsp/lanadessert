@@ -59,15 +59,11 @@
                         @foreach ($cartItems as $cartItem)
                             <div class="d-flex">
                                 <div class="title-pro ms-3 w-100">
-                                    <h4 class="mb-0">{{ $cartItem['productTitle'] }}<span class="text-end" id="total-{{ $cartItem['rowId'] }}">£ {{ $cartItem['rowTotal']}}</span></h4>
+                                    <h4 class="mb-0">{{ $cartItem['productTitle'] }}<span class="text-end" id="row-total-{{ $cartItem['rowId'] }}">£ {{ $cartItem['rowTotal']}}</span></h4>
                                     <p class="mt-0 mb-0">£ {{ $cartItem['productPrice'] }}</p>
                                     <P class="mt-0">{{ $cartItem['optionNames'] ? implode(', ', $cartItem['optionNames']) : '' }}</P>
                                     <div class="input-group">
                                         <div class="quantity-control">
-                                            {{-- <button type="button" onclick="updateQuantity(-1)">-</button>
-                                            <input type="number" id="quantity" name="quantity" min="1" value="{{ $cartItem['quantity'] }}" readonly>
-                                            <button type="button" onclick="updateQuantity(1)">+</button> --}}
-
                                             <button type="button" onclick="updateQuantity({{ $cartItem['rowId'] }}, -1)">-</button>
                                             <input type="number" id="quantity-{{ $cartItem['rowId'] }}" name="quantity" min="1" value="{{ $cartItem['quantity'] }}" readonly>
                                             <button type="button" onclick="updateQuantity({{ $cartItem['rowId'] }}, 1)">+</button>
@@ -84,11 +80,11 @@
                     <div class="cart-total">
                     <p class="text-end">Cart Totals</p>
                     <hr>
-                    <p>Sub Total <span>$7.29</span></p>
+                    <p>Sub Total <span id="cart-sub-total">£ {{ $cartSubTotal }}</span></p>
                     <hr>
                     <p>Shipping <span>Add an address for shipping option</span></p>
                     <hr>
-                    <h4>Total <span>$7.29</span></h4>
+                    <h4>Total <span id="total">£ {{ $cartSubTotal }}</span></h4>
                     </div>
                 </div>
             </div>
@@ -103,22 +99,6 @@
 
 @section('script')
     <script>
-        // function updateQuantity(change) {
-        //     const quantityInput = document.getElementById('quantity');
-        //     let quantity = parseInt(quantityInput.value);
-        //     quantity += change;
-        //     if (quantity < 1) quantity = 1;
-        //     quantityInput.value = quantity;
-        //     updateTotal();
-        // }
-
-        // function updateTotal() {
-        //     const quantity = document.getElementById('quantity').value;
-        //     const price = document.getElementById('price').value;
-        //     const total = (quantity * price).toFixed(2);
-        //     document.getElementById('total').innerText = total;
-        // }   
-        
         function updateQuantity(rowId, change) {
             const quantityInput = document.getElementById('quantity-' + rowId);
             let quantity = parseInt(quantityInput.value);
@@ -126,9 +106,8 @@
             if (quantity < 1) quantity = 1;
             quantityInput.value = quantity;
 
-            // Send AJAX request to update cart
             $.ajax({
-                url: '{{ route("cart.update") }}', // Adjust the route name as needed
+                url: '{{ route("cart.update") }}',
                 method: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}',
@@ -137,23 +116,12 @@
                 },
                 success: function(response) {
                     if (response.success) {
-                        console.log(response);
-                        // Optionally update the total price or other parts of the UI here
-                        // updateTotal();
+                        $('#row-total-'+rowId).text('£ ' + response.rowTotal.toFixed(2));
+                        $('#cart-sub-total').text('£ ' + response.cartSubTotal.toFixed(2));
+                        $('#total').text('£ ' + response.cartSubTotal.toFixed(2));
                     }
                 }
             });
         }
-
-        // function updateTotal() {
-        //     const totalElements = document.querySelectorAll('[id^="quantity-"]');
-        //     let total = 0;
-        //     totalElements.forEach(function(element) {
-        //         const quantity = parseInt(element.value);
-        //         const price = parseFloat(element.closest('.d-flex').querySelector('p').textContent.replace('£', ''));
-        //         total += quantity * price;
-        //     });
-        //     document.getElementById('total').innerText = total.toFixed(2);
-        // }
     </script>
 @endsection
