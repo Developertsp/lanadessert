@@ -36,7 +36,11 @@
                 @if ($response)
                     @foreach ($products as $product)
                         <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
-                            <img src="#" class="card-img-top" alt="...">
+                            @if (isset($product['images'][0]['path']))
+                            <img src="{{ env('SERVER_URL') }}storage/product_images/{{ $product['images'][0]['path'] }}" class="card-img-top" alt="{{ $product['title'] }}">
+                           @else
+                            <img src="{{ asset('storage/images/default.jpg') }}" class="card-img-top" alt="No image available">
+                           @endif
                             <div class="card-body">
                               <h5 class="card-title">{{ $product['title'] }}</h5>
                                 <div class="d-flex justify-content-between align-items-center">
@@ -62,60 +66,101 @@
 @section('script')
 
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
+    $('#cartModal').on('show.bs.modal', function (e) {
+        var button = $(e.relatedTarget);
+        var productTitle = button.data('product-title');
+        var productDetail = button.data('product-detail');
 
-        $('#cartModal').on('show.bs.modal', function (e) {
-            var button = $(e.relatedTarget);
-            var productTitle = button.data('product-title');
-            var productDetail = button.data('product-detail');
+        var modal = $(this);
+        modal.find('.modal-title').text(productTitle);
+        modal.find('#productId').val(productDetail.id);
+        modal.find('#productDetail').data('product-detail', productDetail);
 
-            var modal = $(this);
-            modal.find('.modal-title').text(productTitle);
-            modal.find('#productId').val(productDetail.id);
-            modal.find('#productDetail').data('product-detail', productDetail);
+        var optionsHtml = '';
+        if (productDetail.options && productDetail.options.length > 0) {
+            productDetail.options.forEach(function(optionGroup) {
+                optionsHtml += '<div class="option-group" data-option-id="' + optionGroup.option.id + '">';
+                optionsHtml += '<h6>' + optionGroup.option.name;
+                
+                // Show required or optional based on option type
+                if (optionGroup.option.option_type == 1) {
+                    optionsHtml += ' (Required)';
+                } else if (optionGroup.option.option_type == 2) {
+                    optionsHtml += ' (Optional)';
+                }
+                optionsHtml += '</h6>';
+                
+                // Add warning message for required options
+                if (optionGroup.option.option_type == 1) {
+                    optionsHtml += '<p class="text-danger d-none required-warning" data-option-id="' + optionGroup.option.id + '">Please select one option.</p>';
+                }
 
-            var optionsHtml = '';
-            if (productDetail.options && productDetail.options.length > 0) {
-                productDetail.options.forEach(function(optionGroup) {
-                    optionsHtml += '<div class="option-group">';
-                    optionsHtml += '<h6>' + optionGroup.option.name + '</h6>';
-                    if (optionGroup.option.option_values && optionGroup.option.option_values.length > 0) {
-                        optionGroup.option.option_values.forEach(function(optionValue) {
-                            optionsHtml += '<div class="form-check d-flex justify-content-between align-items-center">';
-                            optionsHtml += '<div>';
-                            optionsHtml += '<input class="form-check-input" type="radio" name="option_' + optionGroup.option.id + '" id="option_' + optionValue.id + '" value="' + optionValue.id + '" data-option-name="' + optionValue.name +'">';
-                            optionsHtml += '<label class="form-check-label" for="option_' + optionValue.id + '">' + optionValue.name + '</label>';
-                            optionsHtml += '</div>';
-                            if (optionValue.price) {
-                                optionsHtml += '<span>$' + optionValue.price + '</span>';
-                            }
-                            optionsHtml += '</div>';
-                        });
-                    }
-                    optionsHtml += '</div>';
-                });
+                if (optionGroup.option.option_values && optionGroup.option.option_values.length > 0) {
+                    optionGroup.option.option_values.forEach(function(optionValue) {
+                        optionsHtml += '<div class="form-check d-flex bd-highlight mb-3  align-items-center">';
+                        
+                        // Use radio buttons for option type 1
+                        if (optionGroup.option.option_type == 1) {
+                            optionsHtml += '<input class="p-2 bd-highlight" type="radio" name="option_' + optionGroup.option.id + '" id="option_' + optionValue.id + '" value="' + optionValue.id + '" data-option-name="' + optionValue.name +'">';
+                        } 
+                        // Use checkboxes for option type 2
+                        else if (optionGroup.option.option_type == 2) {
+                            optionsHtml += '<input class="p-2 bd-highlight" type="checkbox" name="option_' + optionGroup.option.id + '[]" id="option_' + optionValue.id + '" value="' + optionValue.id + '" data-option-name="' + optionValue.name +'">';
+                        }
+
+                        optionsHtml += '<label class="form-check-label" for="option_' + optionValue.id + '">' + optionValue.name + '</label>';
+                        if (optionValue.price) {
+                            optionsHtml += '<span class="ms-auto p-2 bd-highlight" >$' + optionValue.price + '</span>';
+                        }
+                        optionsHtml += '</div>';
+                    });
+                }
+                optionsHtml += '</div>';
+            });
+        } else {
+            optionsHtml = '<p>No options available for this product.</p>';
+        }
+        modal.find('.options').html(optionsHtml);
+    });
+
+    $('#addToCartButton').on('click', function() {
+        var productId = $('#productId').val();
+        var productDetail = $('#productDetail').data('product-detail');
+        var selectedOptions = {};
+        var selectedOptionNames = [];
+        var valid = true;
+
+        $('.option-group').each(function() {
+            var optionGroupId = $(this).data('option-id');
+            var optionType = $(this).find('h6').text().includes('(Required)') ? 1 : 2;
+
+            var selectedOption = [];
+            if (optionType == 1) {
+                // For required fields (radio)
+                var checkedRadio = $(this).find('input[type=radio]:checked');
+                if (checkedRadio.length === 0) {
+                    valid = false;
+                    $(this).find('.required-warning').removeClass('d-none');
+                } else {
+                    $(this).find('.required-warning').addClass('d-none');
+                    selectedOption.push(checkedRadio.val());
+                    selectedOptionNames.push(checkedRadio.data('option-name'));
+                }
             } else {
-                optionsHtml = '<p>No options available for this product.</p>';
+                // For optional fields (checkbox)
+                $(this).find('input[type=checkbox]:checked').each(function() {
+                    selectedOption.push($(this).val());
+                    selectedOptionNames.push($(this).data('option-name'));
+                });
             }
-            modal.find('.options').html(optionsHtml);
+
+            if (selectedOption.length > 0) {
+                selectedOptions[optionGroupId] = selectedOption;
+            }
         });
 
-        $('#addToCartButton').on('click', function() {
-            var productId = $('#productId').val();
-            var productDetail = $('#productDetail').data('product-detail');
-            var selectedOptions = {};
-            var selectedOptionNames = [];
-
-            $('.option-group').each(function() {
-                var optionGroupId = $(this).find('input[type=radio]').attr('name').split('_')[1];
-                var selectedOption = $(this).find('input[type=radio]:checked').val();
-                var selectedOptionName = $(this).find('input[type=radio]:checked').data('option-name');
-                if (selectedOption) {
-                    selectedOptions[optionGroupId] = selectedOption;
-                    selectedOptionNames.push(selectedOptionName);
-                }
-            });
-
+        if (valid) {
             var cartData = {
                 product_id: productId,
                 options: selectedOptions,
@@ -124,7 +169,7 @@
             };
 
             $.ajax({
-                url: '{{ route("cart.add")}}',
+                url: '{{ route("cart.add") }}',
                 type: 'POST',
                 data: {
                     "_token": "{{ csrf_token() }}",
@@ -140,7 +185,8 @@
                     alert('There was an error adding the product to the cart.');
                 }
             });
-        });
+        }
     });
+});
 </script>
 @endsection
