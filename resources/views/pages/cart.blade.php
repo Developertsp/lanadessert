@@ -69,7 +69,7 @@
                                             <button type="button" onclick="updateQuantity({{ $cartItem['rowId'] }}, 1)">+</button>
                                         </div>
                                     </div>
-                                    <a href="">Remove item</a>
+                                    <a href="javascript:void(0)" onclick="removeItemCart({{ $cartItem['rowId'] }})" id="remove-{{ $cartItem['rowId'] }}">Remove item</a>
                                 </div>
                             </div>
                             <hr>
@@ -122,6 +122,29 @@
                     }
                 }
             });
+        }
+
+        function removeItemCart(rowId){
+            if (confirm('Are you sure you want to remove this item from the cart?')) {
+                $.ajax({
+                    url: '{{ route("cart.delete") }}',
+                    method: 'DELETE',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        row_id: rowId,
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        if (response.message === 'Success') {
+                            window.location.reload();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('An error occurred:', error);
+                        alert('Failed to remove item. Please try again.');
+                    }
+                });
+            }
         }
     </script>
 @endsection
