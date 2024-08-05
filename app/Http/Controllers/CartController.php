@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Http;
 
 class CartController extends Controller
 {
@@ -126,6 +127,49 @@ class CartController extends Controller
         }
 
         return response()->json(['message' => 'error'], 404);
+    }
+
+    public function checkout(Request $request)
+    {
+        Session::put('orderType', $request->order_type);
+
+        $data['cartItems'] = Session::get('cart');
+        $data['cartSubTotal'] = Session::get('cartSubTotal');
+        $data['orderType'] = Session::get('orderType');
+        
+        return view('pages.checkout', $data);
+    }
+
+    public function checkout_process(Request $request)
+    {
+        $postData['name'] = $request->name;
+        $postData['email'] = $request->email ?? NULL;
+        $postData['phone'] = $request->phone;
+        $postData['address'] = $request->address ?? NULL;
+        $postData['paymentOption'] = $request->payment_option;
+        $postData['cartItems'] = Session::get('cart');
+        $postData['cartSubTotal'] = Session::get('cartSubTotal');
+        $postData['orderType'] = Session::get('orderType');
+
+        $serverUrl = env('SERVER_URL');
+        $apiToken = env('API_TOKEN');
+
+        $url = 'api/orders/process';
+        
+        $response = Http::withHeaders([
+            'Authorization' => $apiToken,
+        ])->post($serverUrl . $url, $postData);
+
+        return $response;
+        // if($response['status'] == 'success'){
+        //     $data['response'] = true;
+        //     $data['products'] = $response['data'];
+        // }
+        // else{
+        //     $data['response'] = false;
+        // }
+
+        // return $postData;
     }
 
     public function destroy()
