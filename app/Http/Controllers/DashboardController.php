@@ -23,7 +23,7 @@ class DashboardController extends Controller
 
             $collection = collect($response['data']);
             $data['group'] = $collection->groupBy('category_id');
-            $data['menus'] = $collection->pluck('category.name',)->unique()->values()->all();
+            $data['menus'] = $collection->pluck('category.name')->unique()->values()->all();
         }
         else{
             $data['response'] = false;
