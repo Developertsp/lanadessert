@@ -28,5 +28,6 @@ Route::post('cart/update', [CartController::class, 'update'])->name('cart.update
 Route::delete('cart/delete', [CartController::class, 'delete'])->name('cart.delete');
 Route::post('checkout', [CartController::class, 'checkout'])->name('checkout');
 Route::post('checkout/process', [CartController::class, 'checkout_process'])->name('checkout.process');
+Route::get('order', [CartController::class, 'order'])->name('order');
 Route::get('destroy', [CartController::class, 'destroy']);
 

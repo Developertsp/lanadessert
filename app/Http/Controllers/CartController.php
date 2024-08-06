@@ -131,28 +131,39 @@ class CartController extends Controller
 
     public function checkout(Request $request)
     {
+        $request->validate([
+            'order_type' => 'required|in:pickup,delivery'
+        ]);
+
         Session::put('orderType', $request->order_type);
 
-        $data['cartItems'] = Session::get('cart');
-        $data['cartSubTotal'] = Session::get('cartSubTotal');
-        $data['orderType'] = Session::get('orderType');
+        $data['cartItems']      = Session::get('cart');
+        $data['cartSubTotal']   = Session::get('cartSubTotal');
+        $data['orderType']      = Session::get('orderType');
         
         return view('pages.checkout', $data);
     }
 
     public function checkout_process(Request $request)
     {
-        $postData['name'] = $request->name;
-        $postData['email'] = $request->email ?? NULL;
-        $postData['phone'] = $request->phone;
-        $postData['address'] = $request->address ?? NULL;
-        $postData['paymentOption'] = $request->payment_option;
-        $postData['cartItems'] = Session::get('cart');
-        $postData['cartSubTotal'] = Session::get('cartSubTotal');
-        $postData['orderType'] = Session::get('orderType');
+        $request->validate([
+            'name'              => 'required',
+            'phone'             => 'required',
+            'payment_option'     => 'required|in:cash,card'
+        ]);
 
-        $serverUrl = env('SERVER_URL');
-        $apiToken = env('API_TOKEN');
+        $postData['name']           = $request->name;
+        $postData['email']          = $request->email ?? NULL;
+        $postData['phone']          = $request->phone;
+        $postData['address']        = $request->address ?? NULL;
+        $postData['paymentOption']  = $request->payment_option;
+        $postData['cartItems']      = Session::get('cart');
+        $postData['cartSubTotal']   = Session::get('cartSubTotal');
+        $postData['cartTotal']      = Session::get('cartSubTotal');
+        $postData['orderType']      = Session::get('orderType');
+
+        $serverUrl  = env('SERVER_URL');
+        $apiToken   = env('API_TOKEN');
 
         $url = 'api/orders/process';
         
@@ -160,16 +171,16 @@ class CartController extends Controller
             'Authorization' => $apiToken,
         ])->post($serverUrl . $url, $postData);
 
-        return $response;
-        // if($response['status'] == 'success'){
-        //     $data['response'] = true;
-        //     $data['products'] = $response['data'];
-        // }
-        // else{
-        //     $data['response'] = false;
-        // }
+        if ($response->json('status') === 'success') {
+            Session::flush();
+        }
+        Session::flash('response', $response->json());
+        return redirect()->route('order');
+    }
 
-        // return $postData;
+    public function order()
+    {
+        return view('pages.order');
     }
 
     public function destroy()
