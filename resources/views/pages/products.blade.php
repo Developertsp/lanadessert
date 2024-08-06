@@ -35,7 +35,8 @@
             <div class="row" data-aos="fade-up" data-aos-duration="1500">
                 @if ($response)
                     @foreach ($products as $product)
-                        <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
+                    <div class="col-4 mb-4">
+                        <div class="card shadow p-3 bg-body rounded" style="width: 18rem;">
                             @if (isset($product['images'][0]['path']))
                             <img src="{{ env('SERVER_URL') }}storage/product_images/{{ $product['images'][0]['path'] }}" class="card-img-top" alt="{{ $product['title'] }}">
                            @else
@@ -51,6 +52,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                     @endforeach    
                 @else
                     <div class="mount text-center mb-5">
