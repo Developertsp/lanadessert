@@ -77,15 +77,32 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="cart-total">
-                    <p class="text-end">Cart Totals</p>
-                    <hr>
-                    <p>Sub Total <span id="cart-sub-total">£ {{ $cartSubTotal }}</span></p>
-                    <hr>
-                    <p>Shipping <span>Add an address for shipping option</span></p>
-                    <hr>
-                    <h4>Total <span id="total">£ {{ $cartSubTotal }}</span></h4>
-                    </div>
+                    <form action="{{ route('checkout') }}" method="post">
+                        @csrf
+                        <div class="cart-total">
+                            <p class="text-end">Cart Totals</p>
+                            <hr>
+                            <p>Sub Total <span id="cart-sub-total">£ {{ $cartSubTotal }}</span></p>
+                            <hr>
+                            <div class="form-group">
+                                <label for="order_type">Choose order type:</label>
+                                <div>
+                                    <label>
+                                        <input type="radio" id="pickup" name="order_type" value="pickup" {{ session('order_type') == 'pickup' ? 'checked' : '' }} required>
+                                        Pickup
+                                    </label>
+                                    <label class="ms-3">
+                                        <input type="radio" id="delivery" name="order_type" value="delivery" {{ session('order_type') == 'delivery' ? 'checked' : '' }} required>
+                                        Delivery
+                                    </label>
+                                </div>
+                            </div>
+                            <hr>
+                            <h4>Total <span id="total">£ {{ $cartSubTotal }}</span></h4>
+                        </div>
+                        <hr>
+                        <button class="btn btn-primary" type="submit">Checkout</button>
+                    </form>
                 </div>
             </div>
         @else
