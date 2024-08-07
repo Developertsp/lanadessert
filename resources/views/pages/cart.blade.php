@@ -88,13 +88,16 @@
                                 <label for="order_type">Choose order type:</label>
                                 <div>
                                     <label>
-                                        <input type="radio" id="pickup" name="order_type" value="pickup" {{ session('order_type') == 'pickup' ? 'checked' : '' }} required>
+                                        <input type="radio" id="pickup" name="order_type" value="pickup" {{ session('orderType') == 'pickup' ? 'checked' : '' }} >
                                         Pickup
                                     </label>
                                     <label class="ms-3">
-                                        <input type="radio" id="delivery" name="order_type" value="delivery" {{ session('order_type') == 'delivery' ? 'checked' : '' }} required>
+                                        <input type="radio" id="delivery" name="order_type" value="delivery" {{ session('orderType') == 'delivery' ? 'checked' : '' }} >
                                         Delivery
                                     </label>
+                                    @error('order_type')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <hr>
