@@ -157,6 +157,7 @@ class CartController extends Controller
         $postData['phone']          = $request->phone;
         $postData['address']        = $request->address ?? NULL;
         $postData['paymentOption']  = $request->payment_option;
+        $postData['orderNote']      = $request->note;
         $postData['cartItems']      = Session::get('cart');
         $postData['cartSubTotal']   = Session::get('cartSubTotal');
         $postData['cartTotal']      = Session::get('cartSubTotal');
