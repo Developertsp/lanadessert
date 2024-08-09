@@ -155,7 +155,7 @@
 <script src="https://js.stripe.com/v3/"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const stripe = Stripe('pk_test_51LhcZoIaZVrIhvihMf6AC8HYHqf2LgateflPU6OCnvgQlaJfzi65xP49SgFj6L7hBPEJF8vcl6fbGuEq4b9kJGmQ00Pgr7N2TB'); // Replace with your public key
+        const stripe = Stripe(''); // Replace with your public key
         const elements = stripe.elements();
         const card = elements.create('card');
         card.mount('#card-element');
@@ -234,7 +234,5 @@
 
         handlePaymentOptionChange();
     });
-
-
 </script>
 @endsection
