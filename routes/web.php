@@ -9,6 +9,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\FAQController;
+use App\Http\Controllers\PaymentController;
 
 
 
@@ -27,7 +28,14 @@ Route::get('cart', [CartController::class, 'view'])->name('cart.view');
 Route::post('cart/update', [CartController::class, 'update'])->name('cart.update');
 Route::delete('cart/delete', [CartController::class, 'delete'])->name('cart.delete');
 Route::post('checkout', [CartController::class, 'checkout'])->name('checkout');
+Route::post('checkout', [CartController::class, 'checkout'])->name('checkout');
 Route::post('checkout/process', [CartController::class, 'checkout_process'])->name('checkout.process');
 Route::get('order', [CartController::class, 'order'])->name('order');
 Route::get('destroy', [CartController::class, 'destroy']);
+
+Route::get('/cart/count', [CartController::class, 'getCartCount'])->name('cart.count');
+Route::get('/success', [PaymentController::class, 'index']);
+
+
+
 

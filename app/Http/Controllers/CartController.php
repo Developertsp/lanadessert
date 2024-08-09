@@ -146,37 +146,67 @@ class CartController extends Controller
 
     public function checkout_process(Request $request)
     {
+        // Validate the request data
+        \Log::info('Request Data: ', $request->all());
+
         $request->validate([
             'name'              => 'required',
             'phone'             => 'required',
-            'payment_option'     => 'required|in:cash,card'
+            'payment_option'    => 'required|in:cash,online',
+            'payment_method_id' => 'required_if:payment_option,online', // Only required for card payments
         ]);
-
-        $postData['name']           = $request->name;
-        $postData['email']          = $request->email ?? NULL;
-        $postData['phone']          = $request->phone;
-        $postData['address']        = $request->address ?? NULL;
-        $postData['paymentOption']  = $request->payment_option;
-        $postData['cartItems']      = Session::get('cart');
-        $postData['cartSubTotal']   = Session::get('cartSubTotal');
-        $postData['cartTotal']      = Session::get('cartSubTotal');
-        $postData['orderType']      = Session::get('orderType');
-
+    
+        // Prepare data for the API request
+        $postData = [
+            'name'              => $request->name,
+            'email'             => $request->email ?? NULL,
+            'phone'             => $request->phone,
+            'address'           => $request->address ?? NULL,
+            'paymentOption'     => $request->payment_option,
+            'paymentMethodId'   => $request->payment_method_id ?? NULL, // Payment method ID if provided
+            'cartItems'         => Session::get('cart'),
+            'cartSubTotal'      => Session::get('cartSubTotal'),
+            'cartTotal'         => Session::get('cartSubTotal'),
+            'orderType'         => Session::get('orderType'),
+        ];
+    
         $serverUrl  = env('SERVER_URL');
         $apiToken   = env('API_TOKEN');
-
-        $url = 'api/orders/process';
-        
+    
+        if ($request->payment_option === 'online') {
+            // If payment is by card, call the card API endpoint
+            $url = 'api/charge'; 
+        } else {
+            // If payment is by cash, call the orders process endpoint
+            $url = 'api/orders/process';
+        }
+    
+        // Make the API request
         $response = Http::withHeaders([
             'Authorization' => $apiToken,
         ])->post($serverUrl . $url, $postData);
-
+    
+        // Handle the response
         if ($response->json('status') === 'success') {
+            // Clear session data if payment is successful
             Session::flush();
         }
+    
+        // Flash the response message to the session
         Session::flash('response', $response->json());
+    
+        // Redirect to the order page
         return redirect()->route('order');
     }
+    
+
+    public function getCartCount()
+    {
+        $cart = Session::get('cart', []);
+        $totalItems = array_sum(array_column($cart, 'quantity')); // Sum up quantities of all items
+        return response()->json(['count' => $totalItems]);
+    }
+
 
     public function order()
     {

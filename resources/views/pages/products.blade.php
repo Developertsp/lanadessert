@@ -68,7 +68,82 @@
 @section('script')
 
 <script>
-$(document).ready(function() {
+document.addEventListener('DOMContentLoaded', function() {
+    function updateCartCount() {
+        fetch('{{ route('cart.count') }}')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('cart-count').textContent = data.count;
+            })
+            .catch(error => console.error('Error fetching cart count:', error));
+    }
+
+    updateCartCount();
+
+    // Ensure no multiple bindings
+    $('#addToCartButton').off('click').on('click', function() {
+        var productId = $('#productId').val();
+        var productDetail = $('#productDetail').data('product-detail');
+        var selectedOptions = {};
+        var selectedOptionNames = [];
+        var valid = true;
+
+        $('.option-group').each(function() {
+            var optionGroupId = $(this).data('option-id');
+            var optionType = $(this).find('h6').text().includes('(Required)') ? 1 : 2;
+
+            var selectedOption = [];
+            if (optionType == 1) {
+                var checkedRadio = $(this).find('input[type=radio]:checked');
+                if (checkedRadio.length === 0) {
+                    valid = false;
+                    $(this).find('.required-warning').removeClass('d-none');
+                } else {
+                    $(this).find('.required-warning').addClass('d-none');
+                    selectedOption.push(checkedRadio.val());
+                    selectedOptionNames.push(checkedRadio.data('option-name'));
+                }
+            } else {
+                $(this).find('input[type=checkbox]:checked').each(function() {
+                    selectedOption.push($(this).val());
+                    selectedOptionNames.push($(this).data('option-name'));
+                });
+            }
+
+            if (selectedOption.length > 0) {
+                selectedOptions[optionGroupId] = selectedOption;
+            }
+        });
+
+        if (valid) {
+            var cartData = {
+                product_id: productId,
+                options: selectedOptions,
+                optionNames: selectedOptionNames,
+                product_detail: productDetail
+            };
+
+            $.ajax({
+                url: '{{ route("cart.add") }}',
+                type: 'POST',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "data": cartData
+                },
+                success: function(response) {
+                    console.log(response);
+                    alert('Product added to cart successfully!');
+                    $('#cartModal').modal('hide');
+                    updateCartCount(); // Update cart count after adding item
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                    alert('There was an error adding the product to the cart.');
+                }
+            });
+        }
+    });
+
     $('#cartModal').on('show.bs.modal', function (e) {
         var button = $(e.relatedTarget);
         var productTitle = button.data('product-title');
@@ -125,70 +200,7 @@ $(document).ready(function() {
         }
         modal.find('.options').html(optionsHtml);
     });
-
-    $('#addToCartButton').on('click', function() {
-        var productId = $('#productId').val();
-        var productDetail = $('#productDetail').data('product-detail');
-        var selectedOptions = {};
-        var selectedOptionNames = [];
-        var valid = true;
-
-        $('.option-group').each(function() {
-            var optionGroupId = $(this).data('option-id');
-            var optionType = $(this).find('h6').text().includes('(Required)') ? 1 : 2;
-
-            var selectedOption = [];
-            if (optionType == 1) {
-                // For required fields (radio)
-                var checkedRadio = $(this).find('input[type=radio]:checked');
-                if (checkedRadio.length === 0) {
-                    valid = false;
-                    $(this).find('.required-warning').removeClass('d-none');
-                } else {
-                    $(this).find('.required-warning').addClass('d-none');
-                    selectedOption.push(checkedRadio.val());
-                    selectedOptionNames.push(checkedRadio.data('option-name'));
-                }
-            } else {
-                // For optional fields (checkbox)
-                $(this).find('input[type=checkbox]:checked').each(function() {
-                    selectedOption.push($(this).val());
-                    selectedOptionNames.push($(this).data('option-name'));
-                });
-            }
-
-            if (selectedOption.length > 0) {
-                selectedOptions[optionGroupId] = selectedOption;
-            }
-        });
-
-        if (valid) {
-            var cartData = {
-                product_id: productId,
-                options: selectedOptions,
-                optionNames: selectedOptionNames,
-                product_detail: productDetail
-            };
-
-            $.ajax({
-                url: '{{ route("cart.add") }}',
-                type: 'POST',
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "data": cartData
-                },
-                success: function(response) {
-                    console.log(response);
-                    alert('Product added to cart successfully!');
-                    $('#cartModal').modal('hide');
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                    alert('There was an error adding the product to the cart.');
-                }
-            });
-        }
-    });
 });
+
 </script>
 @endsection
