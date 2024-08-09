@@ -1,84 +1,45 @@
 @extends('layout.app')
 @section('title')
-
 <style>
-    .nav-top-svg {
-        display: none;
+    /* Your existing CSS styles */
+    #stripe-form {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: none; /* Hide by default */
     }
 
-    .input-group {
-        margin-bottom: 15px;
-    }
-    .input-group label {
-        display: block;
-        margin-bottom: 5px;
-    }
-    .quantity-control {
-        display: flex;
-        align-items: center;
-    }
-    .quantity-control button {
-        width: 30px;
-        height: 30px;
-        font-size: 18px;
+    #card-element {
+        background-color: #fff;
         border: 1px solid #ccc;
-        background-color: #f0f0f0;
+        border-radius: 4px;
+        padding: 10px;
+        height: 40px;
+        box-sizing: border-box;
+    }
+
+    #card-errors {
+        color: #dc3545;
+        margin-top: 10px;
+    }
+
+    #submit-payment {
+        background-color: #ff0000;
+        border: none;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 4px;
         cursor: pointer;
-    }
-    .quantity-control input {
-        width: 42px;
+        margin-top: 10px;
+        display: inline-block;
         text-align: center;
-        border: 1px solid #ccc;
-        /* margin: 0 5px; */
-        border-left: 0;
-        border-right: 0;
-        text-align: end;
-        height: 30px;
     }
-    .total {
-        font-weight: bold;
+
+    #submit-payment:hover {
+        background-color: #0056b3;
     }
-    /* Styling for the Stripe payment form container */
-#stripe-form {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Styling for the card element */
-#card-element {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-}
-
-/* Styling for card errors */
-#card-errors {
-    color: #dc3545; /* Bootstrap danger color */
-    margin-top: 10px;
-}
-
-/* Styling for the submit button */
-#submit-payment {
-    background-color: #ff0000; /* Bootstrap primary color */
-    border: none;
-    color: #fff;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
-    display: inline-block;
-    text-align: center;
-}
-
-/* Button hover state */
-#submit-payment:hover {
-    background-color: #0056b3;
-}
-
 </style>
 @endsection
 
@@ -88,20 +49,20 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="shipping-contact">
-                    <form action="{{ route('checkout.process') }}" method="post">
+                    <form id="checkout-form" action="{{ route('checkout.process') }}" method="post">
                         @csrf
                         <ol>
                             <li>
                                 <h4>Contact information</h4>
                                 <div class="row">
                                     <div class="col-md-4 p-0">
-                                        <input type="text" placeholder="Name" name="name" class="form-control">
+                                        <input type="text" placeholder="Name" name="name" class="form-control" required>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="email" placeholder="Email" name="email" class="form-control">
+                                        <input type="email" placeholder="Email" name="email" class="form-control" required>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" placeholder="Phone" name="phone" class="form-control">
+                                        <input type="text" placeholder="Phone" name="phone" class="form-control" required>
                                     </div>
                                 </div>
                             </li>
@@ -111,7 +72,7 @@
                                     <p>Enter the address where you want your order delivered.</p>
                                     <div class="row">
                                         <div class="col-md-12 p-0">
-                                            <input type="text" placeholder="Address" name="address" class="form-control">
+                                            <input type="text" placeholder="Address" name="address" class="form-control" required>
                                         </div>
                                     </div>
                                 </li>
@@ -137,7 +98,7 @@
                                 <div id="card-errors" role="alert" class="text-danger mt-2"></div>
                             </div>
                             <div class="form-group">
-                                <button id="submit-payment" class="btn btn-primary w-100">Pay Now</button>
+                                <button id="submit-payment" type="button" class="btn btn-primary w-100">Pay Now</button>
                             </div>
                         </div>
                         <div class="add-note">
@@ -147,7 +108,7 @@
                         <hr>
                         <div class="return mt-4">
                             <a href="{{ route('cart.view') }}">return to cart</a>
-                            <button class="btn">Place order</button>
+                            <button id="place-order" type="submit" class="btn">Place order</button>
                         </div>
                     </form>
                 </div>
@@ -184,40 +145,21 @@
                             </div>
                         </div>
                     </div>
-                    <h4>Total <span>£ {{ $cartSubTotal }}</span></h4>
+                    <h4>Total <span> £ {{ $cartSubTotal }}</span></h4>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Stripe.js -->
 <script src="https://js.stripe.com/v3/"></script>
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const stripeForm = document.getElementById('stripe-form');
-        const cashOption = document.getElementById('cash');
-        const onlineOption = document.getElementById('online');
-        
-        // Function to handle payment option change
-        function handlePaymentOptionChange() {
-            if (onlineOption.checked) {
-                stripeForm.style.display = 'block';
-            } else {
-                stripeForm.style.display = 'none';
-            }
-        }
-
-        // Initialize Stripe
-        const stripe = Stripe('YOUR_STRIPE_PUBLIC_KEY'); // Replace with your public key
+        const stripe = Stripe('pk_test_51LhcZoIaZVrIhvihMf6AC8HYHqf2LgateflPU6OCnvgQlaJfzi65xP49SgFj6L7hBPEJF8vcl6fbGuEq4b9kJGmQ00Pgr7N2TB'); // Replace with your public key
         const elements = stripe.elements();
-        
-        // Create an instance of the card Element
         const card = elements.create('card');
         card.mount('#card-element');
-        
-        // Handle real-time validation errors from the card Element
+
         card.addEventListener('change', function(event) {
             const displayError = document.getElementById('card-errors');
             if (event.error) {
@@ -227,33 +169,72 @@
             }
         });
 
-        // Handle form submission
         document.getElementById('submit-payment').addEventListener('click', function(event) {
-            event.preventDefault();
-            stripe.createToken(card).then(function(result) {
-                if (result.error) {
-                    // Inform the user if there was an error
-                    const displayError = document.getElementById('card-errors');
-                    displayError.textContent = result.error.message;
-                } else {
-                    // Send the token to your server
-                    const form = document.querySelector('form');
-                    const hiddenInput = document.createElement('input');
-                    hiddenInput.setAttribute('type', 'hidden');
-                    hiddenInput.setAttribute('name', 'stripeToken');
-                    hiddenInput.setAttribute('value', result.token.id);
-                    form.appendChild(hiddenInput);
-                    form.submit();
-                }
-            });
+            event.preventDefault(); // Prevent default form submission
+
+            const paymentOption = document.querySelector('input[name="payment_option"]:checked').value;
+
+            if (paymentOption === 'online') {
+                stripe.createPaymentMethod({
+                    type: 'card',
+                    card: card,
+                    billing_details: {
+                        name: document.querySelector('input[name="name"]').value,
+                        email: document.querySelector('input[name="email"]').value,
+                        phone: document.querySelector('input[name="phone"]').value
+                    }
+                }).then(function(result) {
+                    if (result.error) {
+                        const displayError = document.getElementById('card-errors');
+                        displayError.textContent = result.error.message;
+                    } else {
+                        const form = document.getElementById('checkout-form');
+                        let hiddenTokenInput = form.querySelector('input[name="payment_method_id"]');
+
+                        if (hiddenTokenInput) {
+                            hiddenTokenInput.setAttribute('value', result.paymentMethod.id);
+                        } else {
+                            hiddenTokenInput = document.createElement('input');
+                            hiddenTokenInput.setAttribute('type', 'hidden');
+                            hiddenTokenInput.setAttribute('name', 'payment_method_id');
+                            hiddenTokenInput.setAttribute('value', result.paymentMethod.id);
+                            form.appendChild(hiddenTokenInput);
+                        }
+
+                        // Submit the form
+                        form.submit();
+                    }
+                }).catch(function(error) {
+                    console.error('Error creating PaymentMethod:', error);
+                });
+            } else {
+                // For cash payment or any other type
+                const form = document.getElementById('checkout-form');
+                form.submit(); // Simply submit the form without Stripe handling
+            }
         });
 
-        // Add event listeners to handle changes
-        cashOption.addEventListener('change', handlePaymentOptionChange);
-        onlineOption.addEventListener('change', handlePaymentOptionChange);
-        
-        // Initial check
+        function handlePaymentOptionChange() {
+            const stripeForm = document.getElementById('stripe-form');
+            const cashOption = document.getElementById('cash');
+            const onlineOption = document.getElementById('online');
+            const placeOrderButton = document.getElementById('place-order');
+
+            if (onlineOption.checked) {
+                stripeForm.style.display = 'block';
+                placeOrderButton.style.display = 'none'; // Hide place order button if online payment
+            } else {
+                stripeForm.style.display = 'none';
+                placeOrderButton.style.display = 'inline-block'; // Show place order button
+            }
+        }
+
+        document.getElementById('cash').addEventListener('change', handlePaymentOptionChange);
+        document.getElementById('online').addEventListener('change', handlePaymentOptionChange);
+
         handlePaymentOptionChange();
     });
+
+
 </script>
 @endsection
