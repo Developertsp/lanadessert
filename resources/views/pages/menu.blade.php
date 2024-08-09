@@ -20,7 +20,7 @@
        <div class="row" data-aos="fade-up" data-aos-duration="1500">
            @foreach ($chunk as $menu)
                <div class="col-md-3">
-                   <a href="#"><img src="{{ env('SERVER_URL') }}storage/{{ $menu['attributes']['background_image'] }}" width="100%" alt=""></a>
+                <a href="{{route('menu', ['category' => $menu['attributes']['slug']])}}"><img src="{{ env('SERVER_URL') }}storage/{{ $menu['attributes']['background_image'] }}" width="100%" alt=""></a>
                    <h2>{{ $menu['attributes']['name'] }}</h2>
                </div>
            @endforeach
@@ -111,5 +111,27 @@
         </div>
     </div>
 </div>
+@yield('script')
+<script>
+    // Function to update cart count
+    function updateCartCount() {
+        fetch('{{ route('cart.count') }}')
+            .then(response => response.json())
+            .then(data => {
+                const cartCountElement = document.getElementById('cart-count');
+                if (data.count > 0) {
+                    cartCountElement.textContent = data.count;
+                    cartCountElement.style.display = 'inline'; // Show badge if count > 0
+                } else {
+                    cartCountElement.textContent = ''; // Hide badge if count is 0
+                    cartCountElement.style.display = 'none'; // Optionally, you can also hide the badge
+                }
+            })
+            .catch(error => console.error('Error fetching cart count:', error));
+    }
+
+    // Update cart count on page load
+    document.addEventListener('DOMContentLoaded', updateCartCount);
+</script>
 
 @endsection

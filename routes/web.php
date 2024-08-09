@@ -9,7 +9,6 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\FAQController;
-use App\Http\Controllers\PaymentController;
 
 
 
@@ -34,7 +33,6 @@ Route::get('order', [CartController::class, 'order'])->name('order');
 Route::get('destroy', [CartController::class, 'destroy']);
 
 Route::get('/cart/count', [CartController::class, 'getCartCount'])->name('cart.count');
-Route::get('/success', [PaymentController::class, 'index']);
 
 
 

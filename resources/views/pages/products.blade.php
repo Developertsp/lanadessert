@@ -12,7 +12,7 @@
     <!-- Modal -->
     <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-        <div class="modal-content">
+        <div class=" w-75 modal-content">
             <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Product title</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -175,18 +175,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 if (optionGroup.option.option_values && optionGroup.option.option_values.length > 0) {
                     optionGroup.option.option_values.forEach(function(optionValue) {
-                        optionsHtml += '<div class="form-check d-flex bd-highlight mb-3  align-items-center">';
+                        optionsHtml += '<div class=" p-0 form-check d-flex bd-highlight mb-3  align-items-center">';
                         
                         // Use radio buttons for option type 1
                         if (optionGroup.option.option_type == 1) {
-                            optionsHtml += '<input class="p-2 bd-highlight" type="radio" name="option_' + optionGroup.option.id + '" id="option_' + optionValue.id + '" value="' + optionValue.id + '" data-option-name="' + optionValue.name +'">';
+                            optionsHtml += '<input class=" ms-2 p-2 bd-highlight" type="radio" name="option_' + optionGroup.option.id + '" id="option_' + optionValue.id + '" value="' + optionValue.id + '" data-option-name="' + optionValue.name +'">';
                         } 
                         // Use checkboxes for option type 2
                         else if (optionGroup.option.option_type == 2) {
-                            optionsHtml += '<input class="p-2 bd-highlight" type="checkbox" name="option_' + optionGroup.option.id + '[]" id="option_' + optionValue.id + '" value="' + optionValue.id + '" data-option-name="' + optionValue.name +'">';
+                            optionsHtml += '<input class=" ms-2 p-2 bd-highlight" type="checkbox" name="option_' + optionGroup.option.id + '[]" id="option_' + optionValue.id + '" value="' + optionValue.id + '" data-option-name="' + optionValue.name +'">';
                         }
 
-                        optionsHtml += '<label class="form-check-label" for="option_' + optionValue.id + '">' + optionValue.name + '</label>';
+                        optionsHtml += '<label class=" ms-2 form-check-label" for="option_' + optionValue.id + '">' + optionValue.name + '</label>';
                         if (optionValue.price) {
                             optionsHtml += '<span class="ms-auto p-2 bd-highlight" >$' + optionValue.price + '</span>';
                         }
